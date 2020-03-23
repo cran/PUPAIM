@@ -2,7 +2,7 @@
 % Please edit documentation in R/henryanalysis.R
 \name{henryanalysis}
 \alias{henryanalysis}
-\title{Henry Isotherm}
+\title{Henry's Isotherm}
 \usage{
 henryanalysis(Ce, Qe)
 }
@@ -12,11 +12,21 @@ henryanalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the linear regression and the parameters for the Henry isotherm analysis
+the linear regression and the parameter for the henry isotherm analysis
 }
 \description{
-It describes an appropriate fit to the adsorption of adsorbate at relatively low concentrations such that all adsorbate molecules are secluded from their nearest neighbours.
+It describes the appropriate fit to the adsorption of adsorbate at relatively low concentrations such that all adsorbate molecules are secluded from their nearest neighbours.
 }
 \examples{
-henryanalysis(c(1,2,3,4,5),c(1,2,3,4,5))
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+henryanalysis (Ce, Qe)
+}
+\references{
+Ayawei, N., Ebelegi, A. N., and Wankasi, D. (2017). Review Article: Modelling and interpretation of Adsorption isotherms. HINDAWI: Journal of Chemistry. doi: 10.1155/2017/3039817
+
+Bayuo, J. Pelig-Ba, K.B., and Abukari, M.A. (2018). Isotherm modelling of lead (II) adsorption from aqueous solution using groundnut shell as a low-cost adsorbent. IOSR Journal of Appplied chemistry doi:10.9790/5736-1111011823
+}
+\author{
+De Osio, Lloyd P.
 }

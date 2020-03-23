@@ -2,7 +2,7 @@
 % Please edit documentation in R/langmuiranalysis.R
 \name{langmuiranalysis}
 \alias{langmuiranalysis}
-\title{Langmuir Isotherm Analysis}
+\title{Langmuir Isotherm Analysis Non-Linear Form}
 \usage{
 langmuiranalysis(Ce, Qe)
 }
@@ -12,11 +12,23 @@ langmuiranalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the regression analysis for the langmuir isotherm analysis
+the linear regression and the parameters for the Langmuir isotherm
 }
 \description{
-It was primarily designed to describe gas-solid phase adsorption is also used to quantify and contrast the adsorptive capacity of various adsorbents [12]. Langmuir isotherm accounts for the surface coverage by balancing the relative rates of adsorption and desorption (dynamic equilibrium).
+The Langmuir adsorption isotherm is used to describe the equilibrium between adsorbate and adsorbent system, where the adsorbate adsorption is limited to one molecular layer at or before a relative pressure of unity is reached.
 }
 \examples{
-langmuiranalysis(moringa$Ce,moringa$Qe)
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+langmuiranalysis (Ce, Qe)
+}
+\references{
+Langmuir, I. (1997). The constitution and fundamental properties of solids and liquids II. Liquids. Journal of American Chemistry Society, 1848-1906.
+
+Liu, L., Luo, X.-B., LinDing, & Sheng-LianLuo. (2019). Application of Nanotechnology in the Removal of Heavy Metal From Water. Nanomaterials for the Removal of Pollutants and Resource Reutilization, 83-147.
+}
+\author{
+Mark Lester Galicia
+
+C.C. Deocaris
 }

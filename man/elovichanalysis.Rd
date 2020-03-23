@@ -2,21 +2,35 @@
 % Please edit documentation in R/elovichanalysis.R
 \name{elovichanalysis}
 \alias{elovichanalysis}
-\title{Elovich Isotherm Analysis}
+\title{Elovich Isotherm Analysis Non-Linear Form}
 \usage{
 elovichanalysis(Qe, Ce)
 }
 \arguments{
-\item{Qe}{The numeric value for the equilibrium concentration}
+\item{Qe}{the numerical value for adsorbed capacity}
 
-\item{Ce}{the numeric value for the adsorbed concentration}
+\item{Ce}{the numerical value for equilibrium concentration}
 }
 \value{
-the regression analysis for the Elovich Isotherm analysis
+the linear regression and the parameters for the Elovich isotherm
 }
 \description{
-The equation that defines this model is based on a kinetic principle which assumes that adsorption sites increase exponentially with adsorption; this implies a multilayer adsorption.
+Elovich empirical adsorption model is based on the assumption of energetic heterogeneity of the adsorption sites. Moreover, elovich maximum adsorption capacity and Elovich constant can be calculated from the slopes and the intercepts of the plot ln(Qe/Ce) versus Qe.
 }
 \examples{
-elovichanalysis(c(1,2,3,4,5),c(1,2,3,4,5))
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+elovichanalysis(Qe, Ce)
+}
+\references{
+Ayawei, N., Ebelegi, A.N., & Wankasi, D. (2017). Modelling and Interpretation of Adsorption Isotherms. Journal of Chemistry, 2017, 1-11. doi: 10.1155/2017/3039817
+
+Gutierrez, L.G., Moreno-Pirajan, J.C., Guarin Romero, J.R. (2018). Kinetic and Equilibrium Study of the Adsorption of CO2 in Ultramicropores of Resorcinol-Formaldehyde Aerogels Obtained in Acidic and Basic Medium. Journal of Carbon Research, 2018, pp. 4. doi:10.3390/c4040052
+
+Farouq, R., & Yousef, N.S. (2015). Equilibrium and Kinetics Studies of Adsorption of Copper(II) Ions on Natural Biosorbent. International Journal of Chemical Engineering and Applications, 2015, pp.332. DOI: 10.7763/IJCEA.2015.V6.503
+}
+\author{
+Edmundo B. De Guzman Jr.
+
+C.C. Deocaris
 }

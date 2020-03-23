@@ -2,7 +2,7 @@
 % Please edit documentation in R/summaryanalysis.R
 \name{summaryanalysis}
 \alias{summaryanalysis}
-\title{Summary of the Iostherm Analysis}
+\title{Summary of the Isotherm Analysis}
 \usage{
 summaryanalysis(Ce, Qe)
 }
@@ -12,8 +12,8 @@ summaryanalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the summary of the linear model for different adsorption isotherm
+summary of the nonlinear and linear fitting for different adsorption isotherm models
 }
 \description{
-Summarize the analysis for different isotherm models
+1-2 sentences Summarize the analysis for different isotherm models
 }

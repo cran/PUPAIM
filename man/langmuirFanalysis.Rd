@@ -2,7 +2,7 @@
 % Please edit documentation in R/langmuirFanalysis.R
 \name{langmuirFanalysis}
 \alias{langmuirFanalysis}
-\title{Langmuir Freundlich Isotherm Analysis}
+\title{Langmuir-Freundlich Isotherm Analysis Non-Linear Form}
 \usage{
 langmuirFanalysis(Ce, Qe)
 }
@@ -12,11 +12,25 @@ langmuirFanalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the analysis for the Langmuir-Freundlich Isotherm
+the linear regression and the parameters for the Langmuir-Freundlich isotherm
 }
 \description{
-Langmuir Freundlich Isotherm Analysis
+Langmuir-Freundlich Isotherm Analysis describes the distribution of adsorption energy onto heterogeneous surfaces of the adsorbent. At low concentrations of adsorbate, this model becomes Freundlich isotherm, and then at high concentration of adsorbate, it becomes the Langmuir Isotherm. The parameters of this concentration can be obtained using the non-linear regression.
 }
 \examples{
-langmuirFanalysis(c(1,2,3,4,5),c(1,2,3,4,5))
+Ce <- c(0.06649, 0.21948, 0.38188, 0.56311, 0.77729, 0.98794, 1.25390, 1.72698)
+Qe <- c(0.05192, 0.07174, 0.08680, 0.09433, 0.08839, 0.08363, 0.09711, 0.10741)
+langmuirFanalysis(Ce, Qe)
+}
+\references{
+Jeppu G.P and Clement T.P. (2012, March 15) A modified Langmuir-Freundlich isotherm model for simulating pH-dependent adsorption effects. Retrieved from: www.researchgate.net/publication/221762917_A_modified_Langmuir-Freundlich_isotherm_model_for_simulating_pH-dependent_adsorption_effects
+
+Umpleby R.J., et. al (2001, August 23) Characterization of Molecularly Imprinted Polymers with the Langmuir-Freundlich Isotherm. Retrieved fromhttps://pubs.acs.org/doi/pdf/10.1021/ac0105686
+}
+\author{
+Cabugnason, Jay Anne M.
+
+Pogado, Precious Grace
+
+C.C. Deocaris
 }

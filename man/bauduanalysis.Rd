@@ -2,22 +2,33 @@
 % Please edit documentation in R/bauduanalysis.R
 \name{bauduanalysis}
 \alias{bauduanalysis}
-\title{Baudu Isotherm Analysis}
+\title{Baudu Isotherm Analysis Non-Linear Form}
 \usage{
 bauduanalysis(Ce, Qe)
 }
 \arguments{
 \item{Ce}{the numerical value for the equilibrium capacity}
 
-\item{Qe}{the numerical value for the adsorbed capacity}
+\item{Qe}{the numericl value for the adsorbed capacity}
 }
 \value{
-the linear regression and the parameters for the Baudu isotherm
+the nonlinear regression and the parameters for the Baudu isotherm
 }
 \description{
-Reduced form of Langmuir Isotherm
+Baudu is a reduced form of the Langmuir Isotherm upon observation that the estimation of Langmuir coefficients, b and q, by measurement of tangents at different equilibrium concentrations shows that they are not constants in a broad range.
 }
 \examples{
-bauduanalysis(c(1,2,3,4,5),c(1,2,3,4,5))
+bauduanalysis(c(.014, .063, .094, .2, .385, 1.15, 1.64), c(.072, .213, .282, .32, .325, .338, .344))
+}
+\references{
+Ayawei, N., Ebelegi, A. and Wankasi, D. (2017). Modelling and Interpretation of Adsorption Isotherms. Journal of Chemistry, 2017, pp.1-12. doi: 10.1155/2017/3039817
 
+Subramania, D. and Ramadoss, R. (2018). Adsorption of Chromium Using Blue Green Algae-Modeling and Application of Various Isotherms. International Journal of Chemical Technology, 10(1), pp.1-22.
+}
+\author{
+Roan Maeve E.Arilla
+
+Daren Mae B. Imperial
+
+C.C. Deocaris
 }

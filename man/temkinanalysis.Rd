@@ -2,21 +2,31 @@
 % Please edit documentation in R/temkinanalysis.R
 \name{temkinanalysis}
 \alias{temkinanalysis}
-\title{Temkin Isotherm Analysis}
+\title{Temkin Isotherm Analysis Linear Form}
 \usage{
 temkinanalysis(Ce, Qe)
 }
 \arguments{
-\item{Ce}{the numerical value for the equilibrium capacity}
+\item{Ce}{wherein theta is  is the numerical value for the equilibrium capacity}
 
-\item{Qe}{the numerical value for the adsorbed capacity}
+\item{Qe}{is Qe the numerical value for the adsorbed capacity}
 }
 \value{
-the linear regression and the parameters for the Temkin Isotherm Analysis
+the nonlinear regression and the parameters for the Flory-Huggins isotherm
 }
 \description{
-takes into account the effects of indirect adsorbate/adsorbate interaction on the adsorption process
+takes into account the effects of indirect adsorbate/ adsorbate interaction on the adsorption process
 }
 \examples{
-temkinanalysis (c(1,2,3,4,5),c(1,2,3,4,5))
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+temkinanalysis(Ce, Qe)
+}
+\references{
+Newton, A., & Donbebe. (2017, September 5). Modelling and Interpretation of Adsorption Isotherms. retrieved from: https://www.hindawi.com/journals/jchem/2017/3039817
+}
+\author{
+Lance E. Abadier
+
+C.C. Deocaris
 }

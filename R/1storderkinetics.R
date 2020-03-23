@@ -2,7 +2,10 @@
 #' @description A first-order rate equation which is believed to be the earliest model that was presented by Lagergen (1898) to describe the kinetic process of liqud-solid phase adsorption of oxalic acid and malonic acid onto charcoal pertains to the adsorption rate based on the adsorption capacity.
 #' @param t duration of the experiment
 #' @param Ce the numerical value for the equilibrium capacity
-#'
+#' @importFrom graphics "plot" "abline"
+
+#' @importFrom Metrics "rmse" "mae" "mse" "rae"
+#' @importFrom minpack.lm "nlsLM"
 #' @return the regression analysis for the first order kinetics
 #' @examples firstorder(c(1,2,3,4,5),c(1,2,3,4,5))
 #' @export

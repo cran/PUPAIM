@@ -2,22 +2,26 @@
 % Please edit documentation in R/sipsanalysis.R
 \name{sipsanalysis}
 \alias{sipsanalysis}
-\title{Sips Isotherm Analysis}
+\title{Sips Isotherm Analysis Non linear Form}
 \usage{
-sipsanalysis(Qe, Ce)
+sipsanalysis(Ce, Qe)
 }
 \arguments{
-\item{Qe}{the numerical value for the adsorbed concentration}
+\item{Ce}{the numerical value for the equilibrium capacity}
 
-\item{Ce}{the numerical value for the equilbrium concentration}
+\item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the Linear model for the Sips isotherm analysis
+the nonlinear regression and the parameters for the Sips isotherm
 }
 \description{
-Sips Isotherm Analysis
+This model is suitable for predicting adsorption on heterogeneous surfaces, thereby avoiding the limitation of increased adsorbate concentration normally associated with the Freundlich model.
 }
 \examples{
-sipsanalysis(c(1,2,3,4,5),c(1,2,3,4,5))
+sipsanalysis(moringa$Ce,moringa$Qe)
+}
+\references{
+N'diaye, A., Bollahi, M.,Kankou, M. (2019). Sorption of paracetamol from aqueous solution using groundnut shell as a low cost sorbent. J. Mater. Environ. Sci., 2019, Vol.10, Issue 6, 553-562.
 
+Nethaji, S.,Sivasamy, A., Mandal, A. B. (2012). Adsorption isotherms, kinetics and mechanism for the adsorption of cationic and anionic dyes onto carbonaceous particles prepared from Juglans regia shell biomass. Int. J. Environ. Sci. Technol. (2013)10:231-242. doi: 10.1007/s13762-012-0112-0
 }

@@ -1,20 +1,21 @@
 #' @title Pseudo-2nd Order Kinetics
 #' @description The pseudo-second order model describes the adsorption reaction rate with depndent energetically hetrogenousites on the adsorbent. (Mercado-Borayo, et. al., 2014)
-
 #' @param t duration of the experiment
 #' @param Ce the numerical value for the equilibrium capacity
-#'
 #' @return the regression analysis for the second order kinetics
+#' @importFrom graphics "plot"
+#' @importFrom graphics "abline"
+
+#' @importFrom Metrics "rmse" "mae" "mse" "rae"
+#' @importFrom minpack.lm "nlsLM"
 #' @examples secondorder(c(1,2,3,4,5),c(1,2,3,4,5))
 #' @export
 secondorder <- function(t,Ce){
   x <- t
   y <- 1/Ce
-
   fit3 <- lm(y~x)
   print("Second order Kinetics")
   print(summary(fit3))
-
   rhs <- function(x,b0,b1){
     1/(b1) +1/(b0*x^2)
   }

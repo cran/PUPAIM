@@ -1,12 +1,14 @@
-#' @title Summary of the Iostherm Analysis
-#' @description Summarize the analysis for different isotherm models
+#' @title Summary of the Isotherm Analysis
+#' @description 1-2 sentences Summarize the analysis for different isotherm models
 #'
 #' @param Ce the numerical value for the equilibrium capacity
 #' @param Qe the numerical value for the adsorbed capacity
 #'
-#' @return the summary of the linear model for different adsorption isotherm
+#' @return summary of the nonlinear and linear fitting for different adsorption isotherm models
+#' @importFrom stats "nls"
+#' @importFrom utils "data"
 #' @export
-#'
+
 summaryanalysis <- function(Ce,Qe){
   fiveparamanalysis(Ce,Qe)
   bauduanalysis(Ce,Qe)
@@ -15,7 +17,6 @@ summaryanalysis <- function(Ce,Qe){
   fritzanalysis(Ce,Qe)
   harkinsjuraanalysis(Ce,Qe)
   henryanalysis(Ce,Qe)
-  hillanalysis(Ce,Qe)
   jossensanalysis(Ce,Qe)
   jovanovicanalysis(Ce,Qe)
   kahnanalysis(Ce,Qe)
@@ -26,6 +27,4 @@ summaryanalysis <- function(Ce,Qe){
   redlichpanalysis(Ce,Qe)
   sipsanalysis(Ce,Qe)
   print(summary(summaryanalysis))
-
-
 }

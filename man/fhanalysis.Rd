@@ -2,18 +2,33 @@
 % Please edit documentation in R/floryhugginsanalysis.R
 \name{fhanalysis}
 \alias{fhanalysis}
-\title{Flory Huggins Isotherm Analysis}
+\title{Flory-Huggins Isotherm Analysis Non-Linear Form}
 \usage{
-fhanalysis(theta, Co)
+fhanalysis(Ce, Qe)
 }
 \arguments{
-\item{theta}{the numeric value for the fractional coverage}
+\item{Ce}{is equal to Co which is the numeric value for the iniztial concentration}
 
-\item{Co}{the numeric value for the initial concentration}
+\item{Qe}{is equal to theta which is the degree of surface coverage}
 }
 \value{
-the regression analysis for the Flory Huggins Isotherm
+the nonlinear regression and the parameters for the Flory-Huggins isotherm
 }
 \description{
-Flory Huggins Isotherm Analysis
+Flory-Huggins isotherm is a two-parameter isotherm that describes the degree of surface coverage characteristics of the adsorbate on the adsorbent. This isotherm model can express the feasibility and spontaneity of an adsorption process.
+}
+\examples{
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+fhanalysis(Ce, Qe)
+}
+\references{
+Ayawei, N., et al., (5 September 2017). Modeling and Interpretation of Adsorption Isotherms. Retrieved from: https:// www.hindawi.com/journals/jchem/2017/3039817/
+
+Tsamo, C., et al., (27 November 2019). One-, Two-, and Three- Parameter Isotherms, Kinetics, and Thermodynamic Evaluation of Co
+}
+\author{
+Carmela L. Barbacena
+
+C.C. Deocaris
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/WVVanalysis.R
 \name{webervvanalysis}
 \alias{webervvanalysis}
-\title{Weber Van Vliet Isotherm Analysis}
+\title{Weber Van-Vliet Isotherm Analysis Non-linear Form}
 \usage{
 webervvanalysis(Qe, Ce)
 }
@@ -12,8 +12,23 @@ webervvanalysis(Qe, Ce)
 \item{Ce}{the numerical value for the equilibrium capacity}
 }
 \value{
-the linear regression and the parameters for the Weber Van Vliet isotherm analysis
+the nonlinear regression and the parameters for Weber-Van-Vliet  Isotherm Analysis
 }
 \description{
-An empirical relation with four parameters that provided excellent description of data patterns for a wide range of adsorption systems.
+it provides an excellent description of data patterns for a broad range of systems. This model is suitable for batch rate and fixed-bed modelling procedures as it gives a direct parameter evaluation.
+}
+\examples{
+webervvanalysis(moringa$Qe,moringa$Ce)
+}
+\references{
+Van Vliet, B.M., Weber Jr., Hozumi, H.. (1979). Modeling and prediction of specific compound adsorption by activated carbon and synthetic adsorbents. Water Research Vol.14, pp. 1719 to 1728. https://doi.org/10.1016/0043-1354(80)90107-4
+
+
+}
+\author{
+Jeann M. Bumatay
+
+Leslie F. Bautista
+
+Chester C. Deocaris
 }

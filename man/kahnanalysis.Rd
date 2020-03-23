@@ -2,21 +2,33 @@
 % Please edit documentation in R/kahnanalysis.R
 \name{kahnanalysis}
 \alias{kahnanalysis}
-\title{Kahn Isotherm}
+\title{Kahn Isotherm Analysis Non-Linear Form}
 \usage{
 kahnanalysis(Ce, Qe)
 }
 \arguments{
 \item{Ce}{the numerical value for the equilibrium capacity}
 
-\item{Qe}{the numerical value for the adsorbed capacity}
+\item{Qe}{the numerical value the absorbed capacity}
 }
 \value{
 the linear regression and the parameters for the Kahn isotherm analysis
 }
 \description{
-Kahn Isotherm
+Kahn isotherm model is a general model for adsorption of biadsorbate from pure dilute equations solutions
 }
 \examples{
-kahnanalysis(moringa$Ce,moringa$Qe)
+kahnanalysis(c(0.5, 0.6, 0.7, 1.3, 3.9, 7.6, 16.5),c(4.5, 6.5, 9.3, 10.7, 11.6, 12.5, 13.7))
+}
+\references{
+A. R. Khan, R. Ataullah,A. Al-Haddad. (1997). Equilibrium Adsorption Studies of Some Aromatic Pollutants from Dilute Aqueous Solutions on Activated Carbonat Different Temperatures. JOURNAL OF COLLOID AND INTERFACE SCIENCE, 154-165.
+
+Tosun, I. (2012). Ammonium Removal from Aqueous Solutions by Clinoptilolite: Determination of Isotherm and Thermodynamic Parameters and Comparison of Kinetics by the Double Exponential Model and Conventional Kinetic Models. International Journal of Environmental Research and Public Health , 970-984.
+}
+\author{
+Jann Audrey B. Angeles
+
+Raymond B. Diaz
+
+C.C. Deocaris
 }

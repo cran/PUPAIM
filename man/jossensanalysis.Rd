@@ -2,21 +2,31 @@
 % Please edit documentation in R/jossensanalysis.R
 \name{jossensanalysis}
 \alias{jossensanalysis}
-\title{Jossens Isotherm}
+\title{Jossens Isotherm Analysis Non-Linear Form}
 \usage{
-jossensanalysis(Ce, Qe)
+jossensanalysis(Qe, Ce)
 }
 \arguments{
-\item{Ce}{the numerical value for the equilibrium capacity}
-
 \item{Qe}{the numerical value for the adsorbed capacity}
+
+\item{Ce}{the numerical value for the equilibrium capacity}
 }
 \value{
-the linear regression and the parameters for the Jossens isotherm analysis
+the nonlinear regression and the parameters for the Jossens isotherm
 }
 \description{
-It predicts a simple equation based on the energy distribution of adsorbate-adsorbent interactions at adsorption sites.This model assumes that the adsorbent has heterogeneous surface with respect to the interactions it has with the adsorbate.
+The Jossens isotherm model predicts a simple equation based on the energy distribution of adsorbate-adsorbent interactions at adsorption sites. This model assumes that the adsorbent has heterogeneous surface with respect to the interactions it has with the adsorbate.
 }
 \examples{
 jossensanalysis(c(1,2,3,4,5),c(1,2,3,4,5))
+}
+\references{
+Ayawei, N., Ebelegi, A., & Wankasi, D. (2017, September 5). Modelling and Interpretation of Adsorption Isotherms. Journal of Chemistry, 2017, 6. doi:10.1155/2017/3039817
+}
+\author{
+Stephanie Mae L. Manuel
+
+Marie Aileen M. Allauigan
+
+C.C. Deocaris
 }

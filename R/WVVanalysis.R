@@ -1,45 +1,59 @@
-#' @title  Weber Van Vliet Isotherm Analysis
-#' @description An empirical relation with four parameters that provided excellent description of data patterns for a wide range of adsorption systems.
+#' @title Weber Van-Vliet Isotherm Analysis Non-linear Form
+#' @description it provides an excellent description of data patterns for a broad range of systems. This model is suitable for batch rate and fixed-bed modelling procedures as it gives a direct parameter evaluation.
 #' @param Ce the numerical value for the equilibrium capacity
 #' @param Qe the numerical value for the adsorbed capacity
-#'
-#' @return the linear regression and the parameters for the Weber Van Vliet isotherm analysis
+#' @importFrom graphics "abline" "plot"
+#' @importFrom nls2 "nls2"
+
+#' @importFrom Metrics "rmse" "mae" "mse" "rae"
+#' @return the nonlinear regression and the parameters for Weber-Van-Vliet  Isotherm Analysis
+#' @examples webervvanalysis(moringa$Qe,moringa$Ce)
+#' @author Jeann M. Bumatay
+#' @author Leslie F. Bautista
+#' @author Chester C. Deocaris
+#' @references Van Vliet, B.M., Weber Jr., Hozumi, H.. (1979). Modeling and prediction of specific compound adsorption by activated carbon and synthetic adsorbents. Water Research Vol.14, pp. 1719 to 1728. https://doi.org/10.1016/0043-1354(80)90107-4
+#' @references
 #' @export
-webervvanalysis <-function(Qe,Ce){
-	x<- Qe
-	y <- Ce
-
-	fit81 <- lm(y~x)
-	print(summary(fit81))
-	rhs <- function(x,b0,b1,b2,b3){
-	x^(b0*x^(b1) + b2)
-	}
-	fit82 <- nlsLM(y~ rhs(x,p2,p3,p4) , start=list( p2=1, p3=1, p4=1), trace = TRUE)
-	print("Weber- Van Vliet Isotherm")
-	print(summary(fit82))
-
-	a <- (summary(fit82))
-	b <- a$coefficients[2]
-	c <- a$coefficients[1]
-	print(b)
-	print(c)
-	Qp <- function(Ce){
-	  x <- Ce
-
-	  j<- (b*x) + c
-
-	  print(j)
-	}
-	b4 <- Qp(Ce)
-
-	errors <- function(Ce,Qp){
-
-	  rmse<- rmse(Ce,b4)
-	  mae<- mae(Ce,b4)
-	  mse <- mse(Ce,b4)
-	  rae <-rae(Ce,b4)
-	  colnames(Ce) <- rownames(Ce) <-colnames(Ce)
-	  list("Predicted values", "relative mean squared error" = rmse, "mean absolute error"=mae , "mean squared error"=mse ,  "relative absolute error"=rae)}
-	errors(Ce,Qp)
-
+webervvanalysis<- function(Qe,Ce) {
+  x <- Qe
+  y <- Ce
+  data <- data.frame(Qe, Ce)
+  n<- nrow(na.omit(data))
+  print("NLS2 Analysis for Weber Van-Vliet Isotherm")
+  fit267 <- (Ce ~ (P * Qe^(R*(Qe^s)+t)))
+  start <- data.frame(P = c(1e-6, 10),
+                      R = c(1e-7, 0.999),
+                      s = c(1e-2, 3),
+                      t = c(0.1, 5))
+  set.seed(511)
+  suppressWarnings(fit268 <- nls2(fit267,
+                                 start = start,
+                                 control = nls.control(maxiter = 50, warnOnly = TRUE),
+                                 algorithm = c("plinear-random")))
+  print(summary(fit268))
+  error <- function(y){
+    pv  <- (predict(fit268))
+    rmse<- (rmse(y,predict(fit268)))
+    mae <- (mae(y,predict(fit268)))
+    mse <- (mse(y,predict(fit268)))
+    rae <- (rae(y,predict(fit268)))
+    PAIC <- AIC(fit268)
+    PBIC <- BIC(fit268)
+    SE <-(sqrt(sum(predict(fit268)-x)^2)/(n-2))
+    colnames(y) <- rownames(y) <- colnames(y)
+    list("Predicted Values"           = pv,
+         "Relative Mean Square Error" = rmse,
+         "Mean Absolute Error"        = mae,
+         "Mean Squared Error"         = mse,
+         "Relative Absolute Error"    = rae,
+         "AIC"                        = PAIC,
+         "BIC"                        = PBIC,
+         "Standard Error Estimate"    = SE)
+  }
+  e <- error(y)
+  print(e)
+  plot(x, y, main ="Weber Van-Vliet Isotherm Plot", xlab= "Qe", ylab= "Ce")
+  lines(x, predict(fit268), col = "black")
+  rsqq <- lm(Ce~predict(fit268))
+  print(summary(rsqq))
 }

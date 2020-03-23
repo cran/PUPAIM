@@ -2,7 +2,7 @@
 % Please edit documentation in R/halseyanalysis.R
 \name{halseyanalysis}
 \alias{halseyanalysis}
-\title{Halsey Isotherm}
+\title{Halsey Isotherm Analysis Non-Linear Form}
 \usage{
 halseyanalysis(Ce, Qe)
 }
@@ -12,8 +12,26 @@ halseyanalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the linear regression and the parameters for the Halsey isotherm analysis
+the nonlinear regression and the parameters for the Halsey isotherm analysis
 }
 \description{
-Used to evaluate multilayer adsorption at a relatively large distance from the surface.
+used to evaluate multilayer adsorption at a relatively large distance from the surface
+}
+\examples{
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+halseyanalysis(Ce, Qe)
+}
+\references{
+Sousa Neto, V.O., Oliveira, A. G., Teixeira, R.N.P., Silva, M.A.A.,Freire, P.T.C., Keukeleire, D.D., & Nascimento, R.S.(2011). USE OF COCONUT BAGASSE AS
+ALTERNATIVE ADSORBENT FOR SEPARATION OF COPPER(III) IONS FROM AQUEOUS SOLUTIONS: ISOTHERMS, KINETIC AND THERMODYNAMIC STUDIES. Retrived February 17, 2020,
+from https://bioresources.cnr.ncsu.edu/BioRes_06/BioRes_06_3_3376_Neto_OTSFKN_Coconut_Bagasse_Ads_Cu2_Water_Kinet_Thermo_1822.pdf
+
+Imran, M., Naseem, Khalida, Mirza, Latif, M., & Madeeha. (2018, December 1). Evaluation of Saccharum bengalense as a Non-Conventional Biomaterial for
+Biosorption of Mn(II) Ions from Aqueous Solutions. Retrieved February 17.2020, from http://www.ijcce.ac.ir/article_29361.html
+}
+\author{
+Aries N. Bunag
+
+C.C. Deocaris
 }

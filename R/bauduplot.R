@@ -3,13 +3,14 @@
 #' @param Ce the numerical value for the equilibrium capacity
 #' @param Qe the numerical value for the adsorbed capacity
 #' @importFrom graphics "abline"
-#'@importFrom graphics "plot"
-#'@importFrom stats "lm"
-#'@importFrom minpack.lm "nlsLM"
+#' @importFrom graphics "plot"
+
+#' @importFrom minpack.lm "nlsLM"
 #'
 #' @return the LSRL plot of Baudu isotherm analysis
 #'  @export
 bauduplot<- function(Ce, Qe){
+  .Deprecated("bauduanalysis")
   x <- 1/Ce
   y <- Qe
   fit10<- lm(y~x)

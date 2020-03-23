@@ -2,7 +2,7 @@
 % Please edit documentation in R/koblecarrigananalysis.R
 \name{koblecarrigananalysis}
 \alias{koblecarrigananalysis}
-\title{Koble Carrigan Isotherm Analysis}
+\title{Koble-Carrigan Isotherm}
 \usage{
 koblecarrigananalysis(Ce, Qe)
 }
@@ -12,11 +12,23 @@ koblecarrigananalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the linear regression and the parameters for the Koble Carrigan isotherm analysis
+the nonlinear regression and the parameters for the Koble-Carrigan isotherm analysis
 }
 \description{
-Koble Carrigan Isotherm Analysis
+It is three-parameter isotherm model equation that incorporates both Freundlich and Langmuir isotherms for representing equilibrium adsorption data. Koble-Corrigan isotherm model appeared to have advantages over both the Langmuir and Freundlich equations in that it expresses adsorption data over very wide ranges of pressures and temperatures.
 }
 \examples{
-koblecarrigananalysis(moringa$Ce,moringa$Qe)
+koblecarrigananalysis(moringa$Ce, moringa$Qe)
+}
+\references{
+Ayawei, N., Ebelegi, A. N., & Wankasi, D. (2017). Modelling and Interpretation of Adsorption Isotherms. Journal of Chemistry, 2017, 1-11. doi: 10.1155/2017/3039817
+
+Koble, R., & Corrigan, T., "Adsorption isotherms for pure hydrocarbons," Industrial and Engineering Chemistry, vol. 44, no. 2, pp. 383-387, 1952.
+}
+\author{
+Reinald L. Claudio
+
+Verna Chin DR. Caparanga
+
+C.C. Deocaris
 }

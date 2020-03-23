@@ -1,20 +1,20 @@
 #' @title Elovich Kinetics
 #' @description This equation assumes that the actual solid surfaces are energetically heterogenous and that neither desorption nor interactions betwen adsorbed species could subcutaneously affect the kinetics of adsorption at low surface coverage. (Mercado-Borayo, et. al, 2014)
-
 #' @param t duration for the experiment
 #' @param Qt the numerical value for the concentration at given time
-#'
 #' @return The regression analysis for the Elovich Kinetics
-#'
-#'@export
+#' @importFrom graphics "plot"
+#' @importFrom graphics "abline"
+
+#' @importFrom Metrics "rmse" "mae" "mse" "rae"
+#' @importFrom minpack.lm "nlsLM"
+#' @export
 elovichkinetics <-  function(t,Qt){
   x <- log10(t)
   y <- Qt
-
   fit17 <- lm(y~x)
   print("Elovich Kinetics Analysis")
   print(summary(fit17))
-
   rhs <- function(x,b0,b1){
     1/(b0)*log10(b0*b1) + x
   }
@@ -28,15 +28,11 @@ elovichkinetics <-  function(t,Qt){
    print(c)
    Qp <- function(qt){
      x <- Qt
-
      j<- (b*x) + c
-
      print(j)
    }
    b4 <- Qp(Qt)
-
    errors <- function(Qt,Qp){
-
      rmse<- rmse(Qt,b4)
      mae<- mae(Qt,b4)
      mse <- mse(Qt,b4)

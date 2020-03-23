@@ -1,7 +1,5 @@
 #' @title Moringa Adsorption Study
-#' @description asdsadasdasd
-#' @usage \\method {data(moringa)}
-#' @exportMethod moringa , AIM
+#' @description Actual adosrption experiment results using Moringa oleifera seeds.
 #' @format A data frame with 6 observations on the following 2 variables.
 #' \describe{
 #' \item{\code{Ce}}{a numeric vector}
@@ -9,5 +7,5 @@
 #'
 #' }
 #'...
-
+"moringa"
 
