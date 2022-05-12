@@ -1,50 +1,93 @@
-#' @title Toth Isotherm Analysis Non-Linear Form
-#' @description Another empirical modification of the Langmuir equation with the aim of reducing the error between experimental data and predicted value of equilibrium data.
-#' @param Ce the numerical value for the equilibrium capacity
-#' @param Qe the numerical value for the fractional coverage
-#' @importFrom graphics "abline" "plot"
-#' @importFrom nls2 "nls2"
+#'@title Toth Isotherm  Nonlinear Analysis
+#'@name temkinanalysis
+#'@description Another empirical modification of the Langmuir equation with the
+#'aim of reducing the error between experimental data and predicted value of
+#'equilibrium data.
+#'@param Ce the numerical value for the equilibrium capacity
+#'@param Qe the numerical value for the fractional coverage
+#'@import nls2
+#'@import Metrics
+#'@import stats
+#'@import ggplot2
+#'@return the nonlinear regression, parameters for Toth isotherm, and
+#'model error analysis
+#'@examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+#'@examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+#'@examples tothanalysis(Ce,Qe)
+#'@author Keith T. Ostan
+#'@author Chester C. Deocaris
+#'@references Toth, J. (1971). State equations of the solid gas interface layer.
+#'Acta Chem. Acad. Hung. 69:311-317
+#'@export
+#'
 
-#' @importFrom Metrics "rmse" "mae" "mse" "rae"
-#' @return The non linear regression and the parameters for the Toth isotherm analysis
-#' @examples tothanalysis(c(1,2,3,4,5),c(1,2,3,4,5))
-#' @author Kim Zyrell P. Zagala
-#' @author C.C. Deocaris
-#' @references Gutierrez, L.G., et.al(2018, September 20), Kinetic and Equilibrium Study of the Absorption of CO2 in Ultramicropores of Resorcinol-Formaldehyde Aerogels obtained in Acidic and Basic Medium. Retrieved from: doi:10.3390/c4040052
-#' @references Ayawei, N. (2017, September 05). Medelling an Interpretation of Adsorption Isotherm. Retrieved from: https://www.hidawi.com/journals/jchem/2017/3039817
-#' @export
+# Building the Toth isotherm nonlinear form
 tothanalysis <- function(Ce, Qe){
+
   x <- Ce
   y <- Qe
-  fit265 <- (y ~ ((Qt)*(Kt)*(x))/((1+((Kt)*(x))^(Mt))^(1/(Mt))))
-  start <- data.frame(Qt = c(0, 100), Kt = c(0, 100), Mt = c(0, 100))
-  set.seed(511)
-  suppressWarnings(fit266 <- nls2(fit265, start = start, control = nls.control(maxiter = 100, warnOnly = TRUE), algorithm = "plinear-random"))
-  print(summary(fit266))
-  N <- nrow(na.omit(data))
-  error <- function(y){
-    pv  <- (predict(fit266))
-    rmse<- (rmse(y,predict(fit266)))
-    mae <- (mae(y,predict(fit266)))
-    mse <- (mse(y,predict(fit266)))
-    rae <- (rae(y,predict(fit266)))
-    PAIC <- AIC(fit266)
-    PBIC <- BIC(fit266)
-    SE <-(sqrt(sum(predict(fit266)-x)^2)/(N-2))
+  data <- data.frame(x,y)
+
+# Toth isotherm nonlinear equation
+  fit1 <- y ~ (x)/(At+x)^(1/Nt) ##Kt is conditionally linear
+
+# Setting of starting values
+  start1 <- data.frame(At = c(1, 100), Nt = c(0, 1))
+
+# Fitting of the Toth isotherm via nls2
+
+  fit2 <- nls2::nls2(fit1, start = start1, data=data,
+                 control = nls.control(maxiter = 100, warnOnly = TRUE),
+                 algorithm = "plinear-random")
+
+
+  print("Toth Isotherm Nonlinear Analysis")
+  print(summary(fit2))
+
+  AIC <- AIC(fit2)
+  print("Aikake Information Criterion")
+  print(AIC(fit2))
+
+  print("Bayesian Information Criterion")
+  print(BIC(fit2))
+
+
+# Error analysis of the Sips isotherm model
+
+  errors <- function (y) {
+    rmse <- Metrics::rmse(y, predict(fit2))
+    mae <- Metrics::mae(y, predict(fit2))
+    mse <- Metrics::mse(y, predict(fit2))
+    rae <- Metrics::rae(y, predict(fit2))
+    N <- nrow(na.omit(data))
+    SE <- sqrt((sum(y-predict(fit2))^2)/(N-2))
     colnames(y) <- rownames(y) <- colnames(y)
-    list("Predicted Values"           = pv,
-         "Relative Mean Square Error" = rmse,
-         "Mean Absolute Error"        = mae,
-         "Mean Squared Error"         = mse,
-         "Relative Absolute Error"    = rae,
-         "AIC"                        = PAIC,
-         "BIC"                        = PBIC,
-         "Standard Error Estimate"    = SE)
+    list("Root Mean Squared Error" = rmse,
+         "Mean Absolute Error" = mae,
+         "Mean Squared Error" = mse,
+         "Relative Absolute Error" = rae,
+         "Standard Error for the Regression S" = SE)
   }
-  e <- error(y)
-  print(e)
-    plot(x, y, main = "Toth Isotherm Analysis", xlab = "Ce", ylab = "Qe")
-    lines(x, predict(fit266), col = "black")
-    rsqq <- lm(Qe~predict(fit266))
-    print(summary(rsqq))
+  a <- errors(y)
+  print(a)
+
+# Graphical representation of the Toth isotherm model
+
+  ### Predicted parameter values
+  parstoth <- as.vector(coefficients(fit2))
+  pars_At <- parstoth[1L];
+  pars_Nt <- parstoth[2L];
+  pars_Kt <- parstoth[3L]
+
+  rhs <- function(x){((pars_Kt*(x))/(pars_At+x)^(1/pars_Nt))}
+
+  #### Plot details
+  ggplot2::theme_set(ggplot2::theme_bw(10))
+  ggplot2::ggplot(data, ggplot2::aes(x = x, y = y)) + ggplot2::geom_point(color ="#3498DB" ) +
+    ggplot2::geom_function(color = "#D35400", fun = rhs ) +
+    ggplot2::labs(x = "Ce",
+         y = "Qe",
+         title = "Toth Isotherm Nonlinear Model",
+         caption = "PUPAIM 0.3.0") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

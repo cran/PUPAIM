@@ -2,7 +2,7 @@
 % Please edit documentation in R/harkinsjuraanalysis.R
 \name{harkinsjuraanalysis}
 \alias{harkinsjuraanalysis}
-\title{HarkinsJura Isotherm Analysis Non-Linear Form}
+\title{Harkins-Jura Isotherm Non-Linear Analysis}
 \usage{
 harkinsjuraanalysis(Ce, Qe)
 }
@@ -12,10 +12,12 @@ harkinsjuraanalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the nonlinear regression and the parameters for the HarkinsJura isotherm
+the nonlinear regression, parameters for the Harkins-Jura isotherm,
+and model error analysis
 }
 \description{
-It assumes the possibility of multilayer adsorption on the surface of absorbents having heterogenous pore distribution (Ayawei, et al., 2017),(Gupta, et al., 2012)
+A model that assumes the possibility of multilayer adsorption
+on the surface of absorbents having heterogenous pore distribution
 }
 \examples{
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
@@ -23,12 +25,14 @@ Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 
 harkinsjuraanalysis(Ce, Qe)
 }
 \references{
-Ayawei, N., Ebelegi, A. N., & Wankasi, D. (2017). Modelling and Interpretation of Adsorption Isotherms. Journal of Chemistry, 2017, 1-11. doi: 10.1155/2017/3039817
-
-Gupta, V. K., Pathania, D., Agarwal, S., & Sharma, S. (2012). Removal of Cr(VI) onto Ficus carica biosorbent from water. Environmental Science and Pollution Research, 20(4), 2632-2644. doi:10.1007/s11356-012-1176-6
+Harkins, W. D., & Jura, G. (1944) <doi:10.1021/ja01236a048> Surfaces of solids. XIII.
+A vapor adsorption method for the determination of the area of a solid without
+the assumption of a molecular area, and the areas occupied by nitrogen and other
+molecules on the surface of a solid. Journal of the American Chemical Society,
+66(8), 1366-1373.
 }
 \author{
-Raymond James L. Adame
+Paul Angelo C. Manlapaz
 
-C.C. Deocaris
+Chester C. Deocaris
 }

@@ -1,55 +1,92 @@
-#' @title Sips Isotherm Analysis Non linear Form
-#' @description This model is suitable for predicting adsorption on heterogeneous surfaces, thereby avoiding the limitation of increased adsorbate concentration normally associated with the Freundlich model.
-#' @param Ce the numerical value for the equilibrium capacity
-#' @param Qe the numerical value for the adsorbed capacity
-#' @importFrom graphics "abline" "plot"
-#' @importFrom nls2 "nls2"
+#'@title Sips Isotherm Nonlinear Analysis
+#'@name sipsanalysis
+#'@description It is the most applicable to use in the monolayer adsorption
+#'isotherm model amongst the three-parameter isotherm models and is also valid
+#'for the prediction of heterogeneous adsorption systems as well as localized
+#'adsorption with no interactions occurring between adsorbates.
+#'@param Ce the numerical value for the equilibrium capacity
+#'@param Qe the numerical value for the adsorbed capacity
+#'@import nls2
+#'@import Metrics
+#'@import stats
+#'@import ggplot2
+#'@return the nonlinear regression, parameters for Sips isotherm, and model
+#'error analysis
+#'@examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+#'@examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+#'@examples sipsanalysis(Ce,Qe)
+#'@author Keith T. Ostan
+#'@author Chester C. Deocaris
+#'@references Sips, R. (1948) <doi:10.1063/1.1746922> On the structure of a catalyst surface.
+#'The Journal of Chemical Physics, 16(5), 490-495.
+#'@export
+#'
 
-#' @importFrom Metrics "rmse" "mae" "mse" "rae"
-#' @return the nonlinear regression and the parameters for the Sips isotherm
-#' @examples sipsanalysis(moringa$Ce,moringa$Qe)
-#' @references N'diaye, A., Bollahi, M.,Kankou, M. (2019). Sorption of paracetamol from aqueous solution using groundnut shell as a low cost sorbent. J. Mater. Environ. Sci., 2019, Vol.10, Issue 6, 553-562.
-#' @references Nethaji, S.,Sivasamy, A., Mandal, A. B. (2012). Adsorption isotherms, kinetics and mechanism for the adsorption of cationic and anionic dyes onto carbonaceous particles prepared from Juglans regia shell biomass. Int. J. Environ. Sci. Technol. (2013)10:231-242. doi: 10.1007/s13762-012-0112-0
-#' @export
+# Building the Sips isotherm nonlinear form
 sipsanalysis <- function(Ce, Qe){
+
   x <- Ce
   y <- Qe
-  dat <- data.frame(x,y)
-  n<- nrow(na.omit(dat))
-  fit259 <- (y ~ ((Qm*Ks*x^n)/(1 + Ks*x^n)))
-  print("Sips Analysis")
-  start <- data.frame(Qm = c(0, 100), Ks = c(0, 100), n = c(0, 10))
-  set.seed(511)
-  suppressWarnings(fit260 <- nls2(fit259, start = start, control = nls.control(maxiter = 30, warnOnly = TRUE), algorithm = "port"))
-  print(summary(fit260))
-  predict(fit260)
-  error <- function(y){
-    pv  <- (predict(fit260))
-    rmse<- (rmse(y,predict(fit260)))
-    mae <- (mae(y,predict(fit260)))
-    mse <- (mse(y,predict(fit260)))
-    rae <- (rae(y,predict(fit260)))
-    PAIC <- AIC(fit260)
-    PBIC <- BIC(fit260)
-    SE <-(sqrt(sum(predict(fit260)-x)^2)/(n-2))
+  data<- data.frame(x, y)
+
+# Sips isotherm nonlinear equation
+  fit1 <- y ~ (Ks*(x^n))/(1 + (As*(x^n)))
+
+# Setting of starting values
+  start1 <- list(As = 1, Ks = 1, n = 1)
+
+# Fitting of the Sips isotherm via nls2
+
+  fit2 <- nls2::nls2(fit1, start = start1, data=data,
+                 control = nls.control(maxiter = 50, warnOnly = TRUE),
+                 algorithm = "port")
+
+  print("Sips Isotherm Nonlinear Analysis")
+  print(summary(fit2))
+
+  AIC <- AIC(fit2)
+  print("Aikake Information Criterion")
+  print(AIC)
+
+  BIC <- BIC(fit2)
+  print("Bayesian Information Criterion")
+  print(BIC)
+
+# Error analysis of the Sips isotherm model
+
+errors <- function(y){
+    rmse <- Metrics::rmse(Qe, predict(fit2))
+    mae <- Metrics::mae(Qe, predict(fit2))
+    mse <- Metrics::mse(Qe, predict(fit2))
+    rae <- Metrics::rae(Qe, predict(fit2))
+    N <- nrow(na.omit(data))
+    SE <- sqrt((sum(y-predict(fit2))^2)/(N-2))
     colnames(y) <- rownames(y) <- colnames(y)
-    list("Predicted Values"           = pv,
-         "Relative Mean Square Error" = rmse,
-         "Mean Absolute Error"        = mae,
-         "Mean Squared Error"         = mse,
-         "Relative Absolute Error"    = rae,
-         "AIC"                        = PAIC,
-         "BIC"                        = PBIC,
-         "Standard Error Estimate"    = SE)
+    list("Relative Mean Squared Error" = rmse,
+         "Mean Absolute Error" = mae,
+         "Mean Squared Error" = mse,
+         "Relative Absolute Error" = rae)
   }
-  e <- error(y)
-  print(e)
-  nplot <- function(Ce, Qe) {
-    x <- (Ce); y <- (Qe)
-    plot(x, y, main = "Sips Isotherm", xlab = "Ce", ylab = "Qe")
-    lines(smooth.spline(Ce, predict(fit260)), col = "black")
-  }
-  nplot(Ce, Qe)
-  rsqq <- lm(Qe~predict(fit260))
-  print(summary(rsqq))
+  s <- errors(y)
+  print(s)
+
+# Graphical representation of the Sips isotherm model
+
+  ### Predicted parameter values
+  parssips <- as.vector(coefficients(fit2))
+  pars_As <- parssips[1L];
+  pars_Ks <- parssips[2L];
+  pars_n <- parssips[3L]
+
+  rhs <- function(x){((pars_Ks*(x^pars_n))/(1 + (pars_As*(x^pars_n))))}
+
+  #### Plot details
+  ggplot2::theme_set(ggplot2::theme_bw(10))
+  ggplot2::ggplot(data, ggplot2::aes(x = x, y = y)) + ggplot2::geom_point(color ="#3498DB" ) +
+    ggplot2::geom_function(color = "#D35400", fun = rhs ) +
+    ggplot2::labs(x = "Ce",
+         y = "Qe",
+         title = "Sips Isotherm Nonlinear Model",
+         caption = "PUPAIM 0.3.0") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

@@ -1,55 +1,93 @@
-#' @title Hill Isotherm Analysis Non-Linear Form
-#' @description Hill isotherm model shows the connection of different species of homogeneous surfaces. It assumes that the adsorption is a cooperative phenomenon, with a ligand binding activity at one  part of a macromolecule that may affect the different binding sites of that same macromolecule.
+#' @title Hill Isotherm Non-Linear Analysis
+#' @name hillanalysis
+#' @description Hill isotherm model shows the connection of different species
+#' being adsorbed on to the homogeneous surfaces. This isotherm model supposes
+#' that adsorption is a cooperative phenomenon which means the adsorbates having
+#' the capability to bind at one specific site on the adsorbent affecting other
+#' binding sites on the same adsorbent
 #' @param Ce equilibrium capacity
 #' @param Qe adsorbed capacity
-#' @importFrom graphics "abline" "plot"
-#' @importFrom nls2 "nls2"
-
-#' @importFrom Metrics "rmse" "mae" "mse" "rae"
-#' @examples Ce <- c(0.001, 0.0026, 0.0125, 0.031, 0.056)
-#' @examples Qe <- c(0.02, 0.072, 0.146, 0.15, 0.151)
-#' @examples hillanalysis(Ce, Qe)
-#' @author Amiela D. Suerte
-#' @author Carl Luis P. Flestado
-#' @author C.C. Deocaris
-#' @references Tanzifi, M., Karimipour, K., Hoseini, S., Ali, I.(2017). Artificial neural network optimization for methyl orange adsorption onto polyaniline nano-adsorbent: Kinetic, isotherms and thermodynamics. Journal of Molecular Liquids, 2017, p.11. DOI:10.1016/j.molliq.2017.08.122
-#' @references Saadi, R., Saadi, z., Fazaeli, R., Fard, N.E.(2015). Monolayer and multilayer adsorption models for sorption aqueous media. Korean Journal of Chemical Engineering, 2015, p.5. DOI: 10.007/s11814-015-0053-7
-#' @references Larimi, S.G., Moghadamnia, A.A., Najafpour, G.(2016). Kinetics and isotherm studies of the Immobilized Lipase on Chitosan Support. International Journal of Engineering, 2026, p.12. DOI: 10.5829/idosi.ije.2016.29.10a.01
+#' @import nls2
+#' @import Metrics
+#' @import stats
+#' @import ggplot2
+#' @return the nonlinear regression, parameters for the Hill isotherm, and model
+#' error analysis
+#' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+#' @examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+#' @examples hillanalysis(Ce,Qe)
+#' @author Paul Angelo C. Manlapaz
+#' @author Chester C. Deocaris
+#' @references Hill, T. L. (1946) <doi:10.1063/1.1724129> "Statistical mechanics of multimolecular
+#' adsorption II. Localized and mobile adsorption and absorption," The Journal
+#' of Chemical Physics, vol. 14, no. 7, pp. 441-453.
 #' @export
+
+# Building the Hill isotherm nonlinear form
 hillanalysis <- function(Ce, Qe){
+
   x <- Ce
   y <- Qe
-  dat <- data.frame(x,y)
-  n<- nrow(na.omit(dat))
-  mod231 <- (y ~ ((qh*(x^nh))/(kd+x^(nh))))
-  print("Hill Analysis")
-  start <- data.frame(qh = c(0, 100), nh = c(0, 2), kd = c(0, 10))
-  set.seed(511)
-  fit232 <- nls2(mod231, start = start, control = nls.control(maxiter = 100, warnOnly = TRUE), algorithm = "plinear-random")
-  print(summary(fit232))
-  error <- function(y){
-    pv  <- (predict(fit232))
-    rmse<- (rmse(y,predict(fit232)))
-    mae <- (mae(y,predict(fit232)))
-    mse <- (mse(y,predict(fit232)))
-    rae <- (rae(y,predict(fit232)))
-    PAIC <- AIC(fit232)
-    PBIC <- BIC(fit232)
-    SE <-(sqrt(sum(predict(fit232)-x)^2)/(n-2))
+  data <- data.frame(x, y)
+
+  ### Hill isotherm nonlinear equation
+  fit1 <- (y ~ ((qh*x^nh)/(Kd+x^nh)))
+
+  ### Setting of starting values
+  start1 <- list(qh = 1, nh = 1, Kd = 1)
+
+  ### Fitting of the Hill isotherm via nls2
+
+  fit2 <- nls2::nls2(fit1, start = start1, data=data,
+                 control = nls.control(maxiter = 100, warnOnly = TRUE),
+                 algorithm = "port")
+
+  print("Hill Isotherm Nonlinear Analysis")
+  print(summary(fit2))
+
+  print("Akaike Information Criterion")
+  print(AIC(fit2))
+
+  print("Bayesian Information Criterion")
+  print(BIC(fit2))
+
+  # Error analysis of the Hill isotherm model
+
+  errors <- function(y) {
+    rmse <- Metrics::rmse(x, predict(fit2))
+    mae <- Metrics::mae(y, predict(fit2))
+    mse <- Metrics::mse(y, predict(fit2))
+    rae <- Metrics::rae(y, predict(fit2))
+    N <- nrow(na.omit(data))
+    SE <- sqrt((sum(y-predict(fit2))^2)/(N-2))
     colnames(y) <- rownames(y) <- colnames(y)
-    list("Predicted Values"           = pv,
-         "Relative Mean Square Error" = rmse,
-         "Mean Absolute Error"        = mae,
-         "Mean Squared Error"         = mse,
-         "Relative Absolute Error"    = rae,
-         "AIC"                        = PAIC,
-         "BIC"                        = PBIC,
-         "Standard Error Estimate"    = SE)
+    list("Root Mean Squared Error" = rmse,
+         "Mean Absolute Error" = mae,
+         "Mean Squared Error" = mse,
+         "Relative Absolute Error" = rae,
+         "Standard Error for the Regression S" = SE)
   }
-  e <- error(y)
-  print(e)
-  plot(x, y, main = "Hill Isotherm", xlab = "Ce", ylab = "Qe")
-  lines(smooth.spline(x, predict(fit232)))
-  rsqq <- lm(Qe~predict(fit232))
-  print(summary(rsqq))
+  a <- errors(y)
+  print(a)
+
+
+# Graphical representation of the Hill isotherm model
+
+  ### Predicted parameter values
+  parshill <- as.vector(coefficients(fit2))
+  pars_qh <- parshill[1L];
+  pars_nh <- parshill[2L];
+  pars_Kd <- parshill[3L]
+
+  rhs <- function(x){((pars_qh*x^pars_nh)/(pars_Kd+x^pars_nh))}
+
+  #### Plot details
+  ggplot2::theme_set(ggplot2::theme_bw(10))
+  ggplot2::ggplot(data, ggplot2::aes(x = x, y = y)) + ggplot2::geom_point(color ="#3498DB" ) +
+    ggplot2::geom_function(color = "#D35400", fun = rhs ) +
+    ggplot2::labs(x = "Ce",
+       y = "Qe",
+       title = "Hill Isotherm Nonlinear Model",
+       caption = "PUPAIM 0.3.0") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

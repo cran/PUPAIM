@@ -1,0 +1,89 @@
+---
+title: "Introduction to PUPAIM"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to PUPAIM}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(PUPAIM)
+```
+
+## PUPAIM
+
+This is the introduction to the package '"PUPAIM". This package is a collection of physical and chemical adsorption isotherm models. This package caters both the linear and nonlinear functions of the adsorption isotherm models, and can give information about the parameters of the isotherm used as well as the linear regression and the error analysis of that isotherm. Using this package, fitting of adsorption data to different adsorption isotherm models can be made easily.
+
+## Adsorption Plot
+```{r Adsorption Plot, warning=FALSE}
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+data <- data.frame(Ce,Qe)
+
+plot(data,main = "Adsorption Data", xlab = "Ce", 
+         ylab = "Qe")
+```
+
+This is an example of an adsorption plot with the equilibrium capacity (Ce) on the x-axis and the adsorbed capacity (Qe) on the y-axis.Depending on the adsorption isotherm model, these variables may change as well as the line of fit.
+
+There are several isotherm models that can be applied in adsorption systems. These includes: (1) One-parameter isotherm model - Henry's linear model; (2) Two-parameter isotherm model - Langmuir isotherm model, Freundlich isotherm model, Temkin isotherm model, Halsey isotherm model, Elovich isotherm model, Hill-Deboer isotherm model, Fowler-Guggenheim isotherm model, Dubinin-Radushkevich isotherm model, Flory-Huggins isotherm model, Hill isotherm model, Hankin-Jura isotherm model, Jovanovic isotherm model, Bruanuer-Emett-Teller (BET) isotherm model and Kiselev isotherm model; (3) Three-parameter isotherm model - Redlich-Peterson isotherm model, Sips isotherm model, Toth isotherm model, Koble-Carrigan isotherm model, Kahn isotherm model, Radke-Prausnitz isotherm model, and Jossens isotherm model; (4) Four-parameter isotherm model - Baudu isotherm model, Weber-Van Vliet isotherm model, Marczewski-Jaronic isotherm model, and Fritz-Schlunder isotherm model; (5) Five-parameter isotherm model - Fritz-Schlunder isotherm model. Adsorption isotherm models are not limited to these since there are still more other isotherm models in existence.
+
+If a single adsorption data is used to these isotherm models, the corresponding data fitting as well as error analysis would different from one to another.
+
+## Example: One-Parameter Adsorption Isotherm Model
+
+```{r One-Parameter Adsorption Isotherm Model, warning=FALSE}
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+data <- data.frame(Ce,Qe)
+
+henry.LM(Ce, Qe)
+```
+
+## Example: Two-Parameter Adsorption Isotherm Model
+
+```{r Two-Parameter Adsorption Isotherm Model, warning=FALSE}
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+data <- data.frame(Ce,Qe)
+
+hill.LM(Ce, Qe)
+hillanalysis(Ce, Qe)
+```
+
+## Example: Three-Parameter Adsorption Isotherm Model
+
+```{r Three-Parameter Adsorption Isotherm Model, warning=FALSE}
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+data <- data.frame(Ce,Qe)
+
+redlichpeterson.LM(Qe, Ce)
+redlichpetersonanalysis(Qe, Ce)
+```
+
+## Example: Four-Parameter Adsorption Isotherm Model
+
+```{r Four-Parameter Adsorption Isotherm Model, warning=FALSE}
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+data <- data.frame(Ce,Qe)
+
+FS4analysis(Ce, Qe)
+```
+
+
+
+## Published Journals
+The PUPAIM R package is a very effective tool to fitting a certain adsorption isotherm model. As what demonstrated by the published journal of Mr. Lloyd de Osio, an undergraduate Chemistry student, and Mr. Chester C. Deocaris, the maintainer of PUPAIM package, with the title:
+> "FITTING HENRY'S ADSORPTION ISOTHERM MODEL IN R USING THE PUPAIM PACKAGE"
+([via](https://www.researchgate.net/publication/342039215_Fitting_Henry's_Adsorption_Isotherm_model_in_R_using_PUPAIM_package))
+

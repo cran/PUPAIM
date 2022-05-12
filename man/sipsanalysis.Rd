@@ -2,7 +2,7 @@
 % Please edit documentation in R/sipsanalysis.R
 \name{sipsanalysis}
 \alias{sipsanalysis}
-\title{Sips Isotherm Analysis Non linear Form}
+\title{Sips Isotherm Nonlinear Analysis}
 \usage{
 sipsanalysis(Ce, Qe)
 }
@@ -12,16 +12,26 @@ sipsanalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the nonlinear regression and the parameters for the Sips isotherm
+the nonlinear regression, parameters for Sips isotherm, and model
+error analysis
 }
 \description{
-This model is suitable for predicting adsorption on heterogeneous surfaces, thereby avoiding the limitation of increased adsorbate concentration normally associated with the Freundlich model.
+It is the most applicable to use in the monolayer adsorption
+isotherm model amongst the three-parameter isotherm models and is also valid
+for the prediction of heterogeneous adsorption systems as well as localized
+adsorption with no interactions occurring between adsorbates.
 }
 \examples{
-sipsanalysis(moringa$Ce,moringa$Qe)
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+sipsanalysis(Ce,Qe)
 }
 \references{
-N'diaye, A., Bollahi, M.,Kankou, M. (2019). Sorption of paracetamol from aqueous solution using groundnut shell as a low cost sorbent. J. Mater. Environ. Sci., 2019, Vol.10, Issue 6, 553-562.
+Sips, R. (1948) <doi:10.1063/1.1746922> On the structure of a catalyst surface.
+The Journal of Chemical Physics, 16(5), 490-495.
+}
+\author{
+Keith T. Ostan
 
-Nethaji, S.,Sivasamy, A., Mandal, A. B. (2012). Adsorption isotherms, kinetics and mechanism for the adsorption of cationic and anionic dyes onto carbonaceous particles prepared from Juglans regia shell biomass. Int. J. Environ. Sci. Technol. (2013)10:231-242. doi: 10.1007/s13762-012-0112-0
+Chester C. Deocaris
 }

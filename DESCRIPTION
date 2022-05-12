@@ -1,16 +1,23 @@
 Package: PUPAIM
 Type: Package
 Title: A Collection of Physical and Chemical Adsorption Isotherm Models
-Version: 0.2.0
-Author: John Ray V. Saroyda, Ranya Yyan S. Cruz, Roel Joseph C. Antonio, Carl Luis P. Flestado, Jeff Ryan S. Magalong, Kim Zyrell P. Zagala, Carmela L. Barbacena, Jeann M. Bumatay, Leslie F. Bautista, Chester C. Deocaris
-Maintainer: Chester C. Deocaris <ccdeocaris@pup.edu.ph>
-Description: Adsorption isotherm equations are linearized plots of different solid-liquid phase equilibria used in calculating different parameters related to the adsorption process. Isotherm equations deals with physical adsorption of gases and  vapor and gives the most important characteristics  of industrial adsorbents that include pore volume, pore size or energy distribution. PUPAIM has 28 documented adsorption isotherm models listed by Dabrowski (2001) <doi:10.1016/S0001-8686(00)00082-8> and Ayawei et al.(2017) <doi:10.1155/2017/3039817>. These models could be easily  fitted in R using adsorption data (Ce and Qe) obtained from experiments. 
+Version: 0.3.0
+Authors@R: c(person(c("Keith", "T."), "Ostan", email = "ktostan@iskolarngbayan.pup.edu.ph", role = "aut", comment = c(ORCID = "0000-0002-9636-5500")), person(c("Paul Angelo", "C."), "Manlapaz", email = "pacmanlapaz@iskolarngbayan.pup.edu.ph", role = "aut", comment = c(ORCID = "0000-0001-1203-2064")), person(c("Jemnimah Christine", "L."), "Mesias", email = "jclmesias@iskolarngbyan.pup.edu.ph", role = "aut", comment = c(ORCID = "0000-0002-4696-7829")), person(c("Chester", "C."), "Deocaris", email = "ccdeocaris@pup.edu.ph", role = c("aut", "ths", "cre"), comment = c(ORCID = "0000-0003-4504-160X")))
+Description: The PUPAIM R package can generally fit any adsorption experimental data to any of the 51 available adsorption isotherm models - 28 nonlinear models and 23 linear models. This package provides parameter estimation, model accuracy analysis, model error analysis, and adsorption plot created using the package 'ggplot2'. This package will help the users for a much easier way of adsorption model data fitting.
 License: GPL-2
 Encoding: UTF-8
-Depends: R(>= 3.6.0), stats, graphics, nls2, Metrics, minpack.lm
-LazyData: true
-RoxygenNote: 7.0.2
+Imports: Metrics, ggplot2, nls2
+RoxygenNote: 7.1.2
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-03-22 13:05:42 UTC; Chester Deocaris
+Packaged: 2022-05-12 12:52:05 UTC; James
+Author: Keith T. Ostan [aut] (<https://orcid.org/0000-0002-9636-5500>),
+  Paul Angelo C. Manlapaz [aut] (<https://orcid.org/0000-0001-1203-2064>),
+  Jemnimah Christine L. Mesias [aut]
+    (<https://orcid.org/0000-0002-4696-7829>),
+  Chester C. Deocaris [aut, ths, cre]
+    (<https://orcid.org/0000-0003-4504-160X>)
+Maintainer: Chester C. Deocaris <ccdeocaris@pup.edu.ph>
 Repository: CRAN
-Date/Publication: 2020-03-23 11:10:16 UTC
+Date/Publication: 2022-05-12 13:10:02 UTC

@@ -2,7 +2,7 @@
 % Please edit documentation in R/kahnanalysis.R
 \name{kahnanalysis}
 \alias{kahnanalysis}
-\title{Kahn Isotherm Analysis Non-Linear Form}
+\title{Kahn Isotherm Non-Linear Analysis}
 \usage{
 kahnanalysis(Ce, Qe)
 }
@@ -12,23 +12,26 @@ kahnanalysis(Ce, Qe)
 \item{Qe}{the numerical value the absorbed capacity}
 }
 \value{
-the linear regression and the parameters for the Kahn isotherm analysis
+the nonlinear regression, parameters for the Kahn isotherm, and
+model error analysis
 }
 \description{
-Kahn isotherm model is a general model for adsorption of biadsorbate from pure dilute equations solutions
+A generalized model recommended for pure solutions, in which
+both extremes, Langmuir and Freundlich, can be represented. This isotherm was
+developed to cater to both the single- and multi-component adsorption systems.
 }
 \examples{
-kahnanalysis(c(0.5, 0.6, 0.7, 1.3, 3.9, 7.6, 16.5),c(4.5, 6.5, 9.3, 10.7, 11.6, 12.5, 13.7))
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+kahnanalysis(Ce, Qe)
 }
 \references{
-A. R. Khan, R. Ataullah,A. Al-Haddad. (1997). Equilibrium Adsorption Studies of Some Aromatic Pollutants from Dilute Aqueous Solutions on Activated Carbonat Different Temperatures. JOURNAL OF COLLOID AND INTERFACE SCIENCE, 154-165.
-
-Tosun, I. (2012). Ammonium Removal from Aqueous Solutions by Clinoptilolite: Determination of Isotherm and Thermodynamic Parameters and Comparison of Kinetics by the Double Exponential Model and Conventional Kinetic Models. International Journal of Environmental Research and Public Health , 970-984.
+Khan, A. R., Al-Waheab, I. R., & Al-Haddad, A. (1996) <doi:10.1080/09593331708616356> A
+generalized equation for adsorption isotherms for multi-component organic
+pollutants in dilute aqueous solution. Environmental Technology (United Kingdom), 17(1), 13-23.
 }
 \author{
-Jann Audrey B. Angeles
+Paul Angelo C. Manlapaz
 
-Raymond B. Diaz
-
-C.C. Deocaris
+Chester C. Deocaris
 }

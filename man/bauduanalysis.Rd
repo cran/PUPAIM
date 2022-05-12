@@ -2,33 +2,41 @@
 % Please edit documentation in R/bauduanalysis.R
 \name{bauduanalysis}
 \alias{bauduanalysis}
-\title{Baudu Isotherm Analysis Non-Linear Form}
+\title{Baudu Isotherm Non-Linear Analysis}
 \usage{
 bauduanalysis(Ce, Qe)
 }
 \arguments{
 \item{Ce}{the numerical value for the equilibrium capacity}
 
-\item{Qe}{the numericl value for the adsorbed capacity}
+\item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the nonlinear regression and the parameters for the Baudu isotherm
+the nonlinear regression, parameters for Baudu isotherm, and model error
+analysis
 }
 \description{
-Baudu is a reduced form of the Langmuir Isotherm upon observation that the estimation of Langmuir coefficients, b and q, by measurement of tangents at different equilibrium concentrations shows that they are not constants in a broad range.
+Baudu is a reduced form of Langmuir isotherm since it was observed
+that the estimation of Langmuir coefficients b and qm by tangent measurements
+at different equilibrium constants are not constants in the broad concentration
+ range. This can be used if the ranges are (1+x+y) <1 and (1+x) <1.
 }
 \examples{
-bauduanalysis(c(.014, .063, .094, .2, .385, 1.15, 1.64), c(.072, .213, .282, .32, .325, .338, .344))
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+bauduanalysis(Ce,Qe)
 }
 \references{
-Ayawei, N., Ebelegi, A. and Wankasi, D. (2017). Modelling and Interpretation of Adsorption Isotherms. Journal of Chemistry, 2017, pp.1-12. doi: 10.1155/2017/3039817
+Baudu, M. (1990). Etude des interactions solutes-fibres de charbon actif:
+applications et regeneration (Doctoral dissertation, Rennes 1).
+from https://www.theses.fr/1990REN10039
 
-Subramania, D. and Ramadoss, R. (2018). Adsorption of Chromium Using Blue Green Algae-Modeling and Application of Various Isotherms. International Journal of Chemical Technology, 10(1), pp.1-22.
+Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+<doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
+systems. Chemical Engineering Journal.
 }
 \author{
-Roan Maeve E.Arilla
+Jemimah Christine L. Mesias
 
-Daren Mae B. Imperial
-
-C.C. Deocaris
+Chester C. Deocaris
 }

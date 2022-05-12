@@ -1,54 +1,93 @@
-#' @title Koble-Carrigan Isotherm
-#' @description It is three-parameter isotherm model equation that incorporates both Freundlich and Langmuir isotherms for representing equilibrium adsorption data. Koble-Corrigan isotherm model appeared to have advantages over both the Langmuir and Freundlich equations in that it expresses adsorption data over very wide ranges of pressures and temperatures.
+#' @title Koble-Carrigan Isotherm Nonlinear Analysis
+#' @name koblecarrigananalysis
+#' @description It is three-parameter isotherm model equation that incorporates
+#' both Freundlich and Langmuir isotherms for representing equilibrium adsorption
+#' data. Koble-Corrigan isotherm model appeared to have advantages over both the
+#' Langmuir and Freundlich equations in that it expresses adsorption data over
+#' very wide ranges of pressures and temperatures.
 #' @param Ce the numerical value for the equilibrium capacity
 #' @param Qe the numerical value for the adsorbed capacity
-#' @importFrom graphics "abline" "plot"
-#' @importFrom nls2 "nls2"
-
-#' @importFrom Metrics "rmse" "mae" "mse" "rae"
-#' @return the nonlinear regression and the parameters for the Koble-Carrigan isotherm analysis
-#' @examples koblecarrigananalysis(moringa$Ce, moringa$Qe)
-#' @author Reinald L. Claudio
-#' @author Verna Chin DR. Caparanga
-#' @author C.C. Deocaris
-#' @references Ayawei, N., Ebelegi, A. N., & Wankasi, D. (2017). Modelling and Interpretation of Adsorption Isotherms. Journal of Chemistry, 2017, 1-11. doi: 10.1155/2017/3039817
-#' @references Koble, R., & Corrigan, T., "Adsorption isotherms for pure hydrocarbons," Industrial and Engineering Chemistry, vol. 44, no. 2, pp. 383-387, 1952.
+#' @import nls2
+#' @import Metrics
+#' @import stats
+#' @import ggplot2
+#' @return the nonlinear regression, parameters for Koble-Carrigan isotherm, and
+#' model error analysis
+#' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+#' @examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+#' @examples koblecarrigananalysis(Ce, Qe)
+#' @author Keith T. Ostan
+#' @author Chester C. Deocaris
+#' @references Corrigan, T. E., and Koble, R. A.(1952) <doi:10.1021/ie50506a049> Adsorption isotherms for
+#' pure hydrocarbons Ind. Eng. Chem. 44 383-387.
 #' @export
+
+# Building the Koble-Corrigan isotherm nonlinear form
 koblecarrigananalysis <- function(Ce,Qe){
+
   x <- Ce
   y <- Qe
-  data <- data.frame(Ce, Qe)
-  print("NLS2 Analysis for Koble-Carrigan Isotherm")
-  mod245 <- Qe ~ ((Ak*Bk*Ce^p)/(1 + Bk*Ce))
-  start <- data.frame(Ak = c(0, 1000), Bk = c(0, 1000), p = c(0, 1))
-  set.seed(511)
-  fit246 <- nls2(mod245, start = start, control = nls.control(maxiter =50 , warnOnly = TRUE),
-            algorithm = c("port"))
-  print(summary(fit246))
+  data <- data.frame(x, y)
+
+# Koble-Corrigan isotherm nonlinear equation
+  fit1 <- y ~ (Ak*(x^p))/(1 + Bk*(x^p))
+
+# Setting of starting values
+  start1 <- list(Ak = 1, Bk = 1, p = 1)
+
+# Fitting of the Koble-Corrigan isotherm via nls2
+
+  fit2 <- nls2::nls2(fit1, start = start1, data=data,
+                 control = nls.control(maxiter =50 , warnOnly = TRUE),
+                 algorithm = "port")
+
+  print("Koble-Carrigan Isotherm Nonlinear Analysis")
+  print(summary(fit2))
+
+  AIC <- AIC(fit2)
+  print("Aikake Information Criterion")
+  print(AIC)
+
+  BIC <- BIC(fit2)
+  print("Bayesian Information Criterion")
+  print(BIC)
+
+# Error analysis of the Koble-Corrigan isotherm model
+
+  errors <- function(y) {
+  rmse <- Metrics::rmse(y, predict(fit2))
+  mae <- Metrics::mae(y, predict(fit2))
+  mse <- Metrics::mse(y, predict(fit2))
+  rae <- Metrics::rae(y, predict(fit2))
   N <- nrow(na.omit(data))
-  error <- function(y){
-    pv  <- (predict(fit246))
-    rmse<- (rmse(y,predict(fit246)))
-    mae <- (mae(y,predict(fit246)))
-    mse <- (mse(y,predict(fit246)))
-    rae <- (rae(y,predict(fit246)))
-    PAIC <- AIC(fit246)
-    PBIC <- BIC(fit246)
-    SE <-(sqrt(sum(predict(fit246)-x)^2)/(N-2))
-    colnames(y) <- rownames(y) <- colnames(y)
-    list("Predicted Values"           = pv,
-         "Relative Mean Square Error" = rmse,
-         "Mean Absolute Error"        = mae,
-         "Mean Squared Error"         = mse,
-         "Relative Absolute Error"    = rae,
-         "AIC"                        = PAIC,
-         "BIC"                        = PBIC,
-         "Standard Error Estimate"    = SE)
+  SE <- sqrt((sum(y-predict(fit2))^2)/(N-2))
+  colnames(y) <- rownames(y) <- colnames(y)
+  list("Relative Mean squared Error" = rmse,
+       "Mean Absolute Error" = mae,
+       "Mean Squared Error" = mse,
+       "Relative Absolute Error" = rae,
+       "Standard Error for the Regression S" = SE)
   }
-  e <- error(y)
-  print(e)
-  plot(x, y, main ="Koble-Carrigan Isotherm Plot", xlab= "Ce", ylab= "Qe")
-  lines(smooth.spline(x, predict(fit246)), col = "black")
-  rsqq <- lm(Qe~predict(fit246))
-  print(summary(rsqq))
+  a <- errors(y)
+  print(a)
+
+# Graphical representation of the Koble-Corrigan isotherm model
+
+  ### Predicted parameter values
+  parskobleC <- as.vector(coefficients(fit2))
+  pars_Ak <- parskobleC[1L];
+  pars_Bk <- parskobleC[2L];
+  pars_p <- parskobleC[3L]
+
+  rhs <- function(x){((pars_Ak*(x^pars_p))/(1 + pars_Bk*(x^pars_p)))}
+
+  #### Plot details
+  ggplot2::theme_set(ggplot2::theme_bw(10))
+  ggplot2::ggplot(data, ggplot2::aes(x = x, y = y)) + ggplot2::geom_point(color ="#3498DB" ) +
+    ggplot2::geom_function(color = "#D35400", fun = rhs ) +
+    ggplot2::labs(x = "Ce",
+         y = "Qe",
+         title = "Koble-Corrigan Isotherm Nonlinear Model",
+         caption = "PUPAIM 0.3.0") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

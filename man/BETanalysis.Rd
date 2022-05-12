@@ -2,7 +2,7 @@
 % Please edit documentation in R/BETanalysis.R
 \name{BETanalysis}
 \alias{BETanalysis}
-\title{BET Isotherm Analysis Non-Linear Form}
+\title{Brunauer-Emett-Teller (BET) Isotherm Non-Linear Analysis}
 \usage{
 BETanalysis(Ce, Qe)
 }
@@ -12,21 +12,24 @@ BETanalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the non-linear regression, errors, and the parameter values for the BET Isotherm Model
+the nonlinear regression, parameters for BET isotherm, and model error analysis
 }
 \description{
-An isotherm that takes account of the possibility that the monolayer in the Langmuir adsorption isotherm can act as a substrate for further adsorption.
+BET was particularly formulated to describe the multilayer adsorption
+process in gas systems, but can also be employed to an aqueous solution that relates
+the binding between layers because of the molecular charge among them.
 }
 \examples{
-BETanalysis(c(.014, .063, .094, .2, .385, 1.15, 1.64), c(.072, .213, .282, .32, .325, .338, .344))
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+BETanalysis(Ce,Qe)
 }
 \references{
-Shipu, S.(2014, April 30). Bet Isotherm. Retrived form https://www.slideshare.net/mobile/Sourav44Shipu/bet-isotherm
+Brunauer, S., Emmett, P.H. and Teller, E. (1938) <doi:10.1021/ja01269a023> Adsorption of Gases in Multimolecular Layers.
+Journal of the American Chemical Society, 60, 309-319.
 }
 \author{
-Geraldine N. Aliman
+Jemimah Christine L. Mesias
 
-Cherry Rose E. Olivar
-
-C.C. Deocaris
+Chester C. Deocaris
 }

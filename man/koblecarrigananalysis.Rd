@@ -2,7 +2,7 @@
 % Please edit documentation in R/koblecarrigananalysis.R
 \name{koblecarrigananalysis}
 \alias{koblecarrigananalysis}
-\title{Koble-Carrigan Isotherm}
+\title{Koble-Carrigan Isotherm Nonlinear Analysis}
 \usage{
 koblecarrigananalysis(Ce, Qe)
 }
@@ -12,23 +12,27 @@ koblecarrigananalysis(Ce, Qe)
 \item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
-the nonlinear regression and the parameters for the Koble-Carrigan isotherm analysis
+the nonlinear regression, parameters for Koble-Carrigan isotherm, and
+model error analysis
 }
 \description{
-It is three-parameter isotherm model equation that incorporates both Freundlich and Langmuir isotherms for representing equilibrium adsorption data. Koble-Corrigan isotherm model appeared to have advantages over both the Langmuir and Freundlich equations in that it expresses adsorption data over very wide ranges of pressures and temperatures.
+It is three-parameter isotherm model equation that incorporates
+both Freundlich and Langmuir isotherms for representing equilibrium adsorption
+data. Koble-Corrigan isotherm model appeared to have advantages over both the
+Langmuir and Freundlich equations in that it expresses adsorption data over
+very wide ranges of pressures and temperatures.
 }
 \examples{
-koblecarrigananalysis(moringa$Ce, moringa$Qe)
+Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+koblecarrigananalysis(Ce, Qe)
 }
 \references{
-Ayawei, N., Ebelegi, A. N., & Wankasi, D. (2017). Modelling and Interpretation of Adsorption Isotherms. Journal of Chemistry, 2017, 1-11. doi: 10.1155/2017/3039817
-
-Koble, R., & Corrigan, T., "Adsorption isotherms for pure hydrocarbons," Industrial and Engineering Chemistry, vol. 44, no. 2, pp. 383-387, 1952.
+Corrigan, T. E., and Koble, R. A.(1952) <doi:10.1021/ie50506a049> Adsorption isotherms for
+pure hydrocarbons Ind. Eng. Chem. 44 383-387.
 }
 \author{
-Reinald L. Claudio
+Keith T. Ostan
 
-Verna Chin DR. Caparanga
-
-C.C. Deocaris
+Chester C. Deocaris
 }

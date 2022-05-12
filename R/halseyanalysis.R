@@ -1,59 +1,88 @@
-#' @title Halsey Isotherm Analysis Non-Linear Form
-#' @description used to evaluate multilayer adsorption at a relatively large distance from the surface
+#' @title Halsey Isotherm Non-Linear Analysis
+#' @name halseyanalysis
+#' @description A multilayer adsorption isotherm model which is suited for
+#' adsorption of adsorbate ions at a distance that is relatively large from the
+#'  surface.
 #' @param Ce the numerical value for the equilibrium capacity
 #' @param Qe the numerical value for the adsorbed capacity
-#' @importFrom graphics "abline" "plot"
-#' @importFrom nls2 "nls2"
-
-#' @importFrom Metrics "rmse" "mae" "mse" "rae"
-#' @return the nonlinear regression and the parameters for the Halsey isotherm analysis
+#' @import nls2
+#' @import Metrics
+#' @import stats
+#' @import ggplot2
+#' @return the nonlinear regression, parameters for the Halsey isotherm, and
+#' model error analysis
 #' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 #' @examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
 #' @examples halseyanalysis(Ce, Qe)
-#' @author Aries N. Bunag
-#' @author C.C. Deocaris
-#' @references Sousa Neto, V.O., Oliveira, A. G., Teixeira, R.N.P., Silva, M.A.A.,Freire, P.T.C., Keukeleire, D.D., & Nascimento, R.S.(2011). USE OF COCONUT BAGASSE AS
-#' ALTERNATIVE ADSORBENT FOR SEPARATION OF COPPER(III) IONS FROM AQUEOUS SOLUTIONS: ISOTHERMS, KINETIC AND THERMODYNAMIC STUDIES. Retrived February 17, 2020,
-#' from https://bioresources.cnr.ncsu.edu/BioRes_06/BioRes_06_3_3376_Neto_OTSFKN_Coconut_Bagasse_Ads_Cu2_Water_Kinet_Thermo_1822.pdf
-#' @references Imran, M., Naseem, Khalida, Mirza, Latif, M., & Madeeha. (2018, December 1). Evaluation of Saccharum bengalense as a Non-Conventional Biomaterial for
-#' Biosorption of Mn(II) Ions from Aqueous Solutions. Retrieved February 17.2020, from http://www.ijcce.ac.ir/article_29361.html
+#' @author Paul Angelo C. Manlapaz
+#' @author Chester C. Deocaris
+#' @references Halsey, G., & Taylor, H. S. (1947) <doi:10.1063/1.1746618> The adsorption of
+#' hydrogen on tungsten powders. The Journal of Chemical Physics, 15(9), 624-630.
 #' @export
-halseyanalysis <- function(Ce,Qe)
-{
+
+# Building the Halsey isotherm nonlinear form
+halseyanalysis <- function(Ce,Qe) {
+
   x <- Ce
   y <- Qe
   data <- data.frame(x, y)
-  mod224 <- Qe ~ (Kh/Ce)^(1/nh)
-  N <- nrow(na.omit(data))
-  values <- data.frame(nh = seq(-10, 10, length.out = N), Kh = seq(0, 1000, length.out = N))
-  set.seed(511)
-  suppressWarnings(fit225 <- nls2(mod224, data = data, start= values, control = nls.control(maxiter = 1000 , warnOnly = TRUE), algorithm = "port"))
-  print("NLS2 Analysis for Halsey Isotherm Analysis")
-  print(summary(fit225))
-  error <- function(y){
-    pv  <- (predict(fit225))
-    rmse<- (rmse(y,predict(fit225)))
-    mae <- (mae(y,predict(fit225)))
-    mse <- (mse(y,predict(fit225)))
-    rae <- (rae(y,predict(fit225)))
-    PAIC <- AIC(fit225)
-    PBIC <- BIC(fit225)
-    SE <-(sqrt(sum(predict(fit225)-x)^2)/(N-2))
+
+# Halsey isotherm nonlinear equation
+  fit1 <- y ~ exp((log(Kh)-log(x))/nh)
+
+# Setting of starting values
+  start1 <- list(nh = -1, Kh = 1)
+
+# Fitting of the Halsey isotherm via nls2
+
+  fit2 <- nls2::nls2(fit1, start= start1,  data=data,
+               control = nls.control(maxiter = 50 , warnOnly = TRUE),
+               algorithm = "port")
+
+  print("Halsey Isotherm Nonlinear Analysis")
+  print(summary(fit2))
+
+  print("Akaike Information Criterion")
+  print(AIC(fit2))
+
+  print("Bayesian Information Criterion")
+  print(BIC(fit2))
+
+# Error analysis of the Halsey isotherm model
+
+  errors <- function(y){
+    rmse <- Metrics::rmse(y, predict(fit2))
+    mae <- Metrics::mae(y, predict(fit2))
+    mse <- Metrics::mse(y, predict(fit2))
+    rae <- Metrics::rae(y, predict(fit2))
+    N <- nrow(na.omit(data))
+    SE <- sqrt((sum(y-predict(fit2))^2)/(N-2))
     colnames(y) <- rownames(y) <- colnames(y)
-    list("Predicted Values"           = pv,
-         "Relative Mean Square Error" = rmse,
-         "Mean Absolute Error"        = mae,
-         "Mean Squared Error"         = mse,
-         "Relative Absolute Error"    = rae,
-         "AIC"                        = PAIC,
-         "BIC"                        = PBIC,
-         "Standard Error Estimate"    = SE)
+    list("Relative Mean Squared Error" = rmse,
+         "Mean Absolute Error" = mae,
+         "Mean Squared Error" = mse,
+         "Relative Absolute Error" = rae,
+         "Standard Error for the Regression S" = SE)
   }
-  e <- error(y)
-  print(e)
-    plot(x, y, main = "Halsey Analysis", xlab = "Ce",
-         ylab = "Qe")
-    lines(x, predict(fit225), col = "black")
-    rsqq <- lm(Qe~predict(fit225))
-    print(summary(rsqq))
-  }
+  a <- errors(y)
+  print(a)
+
+# Graphical representation of the Halsey isotherm model
+
+  ### Predicted parameter values
+  parshal <- as.vector(coefficients(fit2))
+  pars_nh <- parshal[1L];
+  pars_Kh <- parshal[2L];
+
+  rhs <- function(x){(exp((log(pars_Kh)-log(x))/pars_nh))}
+
+  #### Plot details
+  ggplot2::theme_set(ggplot2::theme_bw(10))
+  ggplot2::ggplot(data, ggplot2::aes(x = x, y = y)) + ggplot2::geom_point(color ="#3498DB" ) +
+    ggplot2::geom_function(color = "#D35400", fun = rhs ) +
+    ggplot2::labs(x = "Ce",
+         y = "Qe",
+         title = "Halsey Isotherm Nonlinear Model",
+         caption = "PUPAIM 0.3.0") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
+}
