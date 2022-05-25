@@ -44,13 +44,11 @@ sipsanalysis <- function(Ce, Qe){
   print("Sips Isotherm Nonlinear Analysis")
   print(summary(fit2))
 
-  AIC <- AIC(fit2)
   print("Aikake Information Criterion")
-  print(AIC)
-
-  BIC <- BIC(fit2)
+  print( AIC(fit2))
+  
   print("Bayesian Information Criterion")
-  print(BIC)
+  print(BIC(fit2))
 
 # Error analysis of the Sips isotherm model
 
@@ -69,6 +67,9 @@ errors <- function(y){
   }
   s <- errors(y)
   print(s)
+  
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
 
 # Graphical representation of the Sips isotherm model
 
@@ -87,6 +88,6 @@ errors <- function(y){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Sips Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

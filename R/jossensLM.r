@@ -18,7 +18,7 @@
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
 #' @references Jossens, L., Prausnitz, J. M., Fritz, W., Schlunder, E. U.,
-#' & Myers, A. L. (1978) <doi:10.1016/0009-2509(78)85015-5> Thermodynamics of
+#' and Myers, A. L. (1978) <doi:10.1016/0009-2509(78)85015-5> Thermodynamics of
 #' multi-solute adsorption from dilute aqueous solutions.
 #' Chemical Engineering Science, 33(8), 1097-1106.
 #' @export
@@ -112,7 +112,7 @@ jossens.LM <- function(Ce,Qe) {
     ggplot2::labs(x = expression(paste("Qe"^"Nj")),
          y ="ln(Ce/Qe)",
          title = "Jossens Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }
 

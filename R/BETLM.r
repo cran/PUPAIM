@@ -108,6 +108,6 @@ BET.LM <- function (Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "Ce/Qe(Cs-Ce)",
          title = "Brunauer-Emett-Teller (BET) Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

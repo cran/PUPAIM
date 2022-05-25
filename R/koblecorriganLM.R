@@ -18,7 +18,7 @@
 #' @examples koblecarrigan.LM(Ce, Qe)
 #' @author Keith T. Ostan
 #' @author Chester C. Deocaris
-#' @references Corrigan, T. E., & Koble, R. A.(1952) <doi:10.1021/ie50506a049>
+#' @references Corrigan, T. E., and Koble, R. A.(1952) <doi:10.1021/ie50506a049>
 #' Adsorption isotherms for pure hydrocarbons Ind. Eng. Chem. 44 383-387.
 #' @export
 
@@ -110,6 +110,6 @@ koblecarrigan.LM <- function(Ce,Qe) {
     ggplot2::labs(x = expression(paste("1"/"Ce"^"Nkc")),
          y = "1/Qe",
          title = "Koble-Corrigan Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

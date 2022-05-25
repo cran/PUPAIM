@@ -18,12 +18,11 @@
 #' @examples marckzewskijaroniecanalysis(Ce,Qe)
 #' @author Keith T. Ostan
 #' @author Chester C. Deocaris
-#' @references Marczewski, A. W., Derylo-Marczewska, A., & Jaroniec, M. (1986)
+#' @references Marczewski, A. W., Derylo-Marczewska, A., and Jaroniec, M. (1986)
 #' <doi:10.1016/0021-9797(86)90309-7M> Energetic heterogeneity and molecular
 #' size effects in physical adsorption on solid surfaces. Journal of Colloid And
 #' Interface Science, 109(2), 310-324.
 #' @export
-#'
 
 # Building the Marckzewski-Jaroniec isotherm nonlinear form
 marckzewskijaroniecanalysis <- function (Ce, Qe){
@@ -77,6 +76,9 @@ marckzewskijaroniecanalysis <- function (Ce, Qe){
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+
 # Graphical representation of the Marckzewski-Jaroniec isotherm model
 
   ### Predicted parameter values
@@ -96,6 +98,6 @@ marckzewskijaroniecanalysis <- function (Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Marckzewski-Jaroniec Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

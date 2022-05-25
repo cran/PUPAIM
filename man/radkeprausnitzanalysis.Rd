@@ -23,7 +23,9 @@ Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 
 radkeprausnitzanalysis(Ce,Qe)
 }
 \references{
-Radke, C. J. and Prausnitz, J. M. (1972) <doi:10.1021/i160044a003> Adsorption of organic solutions from dilute aqueous solution on activated carbon, Ind. Eng. Chem. Fund. 11 (1972) 445-451.
+Radke, C. J. and Prausnitz, J. M. (1972) <doi:10.1021/i160044a003> 
+Adsorption of organic solutions from dilute aqueous solution on activated carbon, 
+Ind. Eng. Chem. Fund. 11 (1972) 445-451.
 }
 \author{
 Keith T. Ostan

@@ -67,6 +67,9 @@ BETanalysis <- function(Ce,Qe){
   }
   a <- errors(y)
   print(a)
+  
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
 
   # Graphical representation of the BET isotherm model
 
@@ -85,7 +88,7 @@ BETanalysis <- function(Ce,Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "BET Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust=0.5))
 }
 

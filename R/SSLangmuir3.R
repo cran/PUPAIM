@@ -1,4 +1,4 @@
-#' @title selfStart using Langmuir Second Linear Model
+#' @title selfStart using Langmuir Third Linear Model
 #' @name SSLangmuir3
 #' @description It calculates initial estimates for the model parameters from data
 #' so nls has a greater chance of convergence.

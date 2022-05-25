@@ -16,7 +16,7 @@
 #' @examples kahnanalysis(Ce, Qe)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Khan, A. R., Al-Waheab, I. R., & Al-Haddad, A. (1996) <doi:10.1080/09593331708616356> A
+#' @references Khan, A. R., Al-Waheab, I. R., and Al-Haddad, A. (1996) <doi:10.1080/09593331708616356> A
 #' generalized equation for adsorption isotherms for multi-component organic
 #' pollutants in dilute aqueous solution. Environmental Technology (United Kingdom), 17(1), 13-23.
 #' @export
@@ -53,6 +53,7 @@ kahnanalysis <- function(Ce,Qe){
  print("Bayesian Information Criterion")
  print(BIC(fit2))
 
+
   # Error analysis of the Kahn isotherm model
 
 errors <- function(y) {
@@ -71,6 +72,9 @@ errors <- function(y) {
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+
 # Graphical representation of the Kahn isotherm model
 
   ### Predicted parameter values
@@ -88,6 +92,6 @@ errors <- function(y) {
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Kahn Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

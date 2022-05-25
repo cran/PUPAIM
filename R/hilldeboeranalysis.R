@@ -18,18 +18,18 @@
 #' @examples theta <- c(0.19729, 0.34870, 0.61475, 0.74324, 0.88544, 0.89007, 0.91067, 0.91067, 0.96114)
 #' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 #' @examples Temp <- 298
-#' @examples hilldeboeranalysis(theta, Ce, Temp)
+#' @examples hilldeboeranalysis(Ce,theta, Temp)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
 #' @references De Boer, J. H. (1953). The Dynamical Character of adsorption,
 #' Oxford University Press, Oxford, England.
-#' @references Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+#' @references Foo, K. Y., and Hameed, B. H. (2009, September 13).
 #' <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 #' systems. Chemical Engineering Journal.
 #' @export
 
 # Building the Hill-De Boer isotherm nonlinear forms
-hilldeboeranalysis <- function(theta, Ce, Temp){
+hilldeboeranalysis <- function(Ce,theta, Temp){
 
   x <- theta
   y <- Ce
@@ -78,6 +78,9 @@ errors <- function(y){
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(theta~predict(fit2))
+  print(summary(rsqq))
+
 # Graphical representation of the Hill-Deboer isotherm model
 
   ### Predicted parameter values
@@ -94,6 +97,6 @@ errors <- function(y){
     ggplot2::labs(x = expression(paste(theta)),
          y = "Ce",
          title = "Hill-de Boer Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
-    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
+         caption = "PUPAIM") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5)) + ggplot2::coord_flip()
 }

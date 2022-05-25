@@ -4,12 +4,12 @@
 \alias{fowlerguggenheim.LM}
 \title{Fowler-Guggenheim Isotherm Linear Analysis}
 \usage{
-fowlerguggenheim.LM(theta, Ce, Temp)
+fowlerguggenheim.LM(Ce, theta, Temp)
 }
 \arguments{
-\item{theta}{is fractional surface coverage}
-
 \item{Ce}{is equal to the numerical value for the equilibrium capacity}
+
+\item{theta}{is the fractional surface coverage}
 
 \item{Temp}{temperature}
 }
@@ -28,14 +28,14 @@ Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607,
 0.80435, 1.10327, 1.58223)
 theta  <- c(0.1972984, 0.3487013, 0.6147560, 0.7432401, 0.8854408,
 0.8900708, 0.9106746, 0.9106746, 0.9611422)
-Temp <- 298.15
-fowlerguggenheim.LM(theta, Ce, Temp)
+Temp <- 298
+fowlerguggenheim.LM(Ce, theta, Temp)
 }
 \references{
 Fowler, R. H. and Guggenheim, E. A. (1939) Statistical Thermodynamics,
 Cambridge University Press, London, England.
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

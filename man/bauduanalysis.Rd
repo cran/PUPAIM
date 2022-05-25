@@ -31,7 +31,7 @@ Baudu, M. (1990). Etude des interactions solutes-fibres de charbon actif:
 applications et regeneration (Doctoral dissertation, Rennes 1).
 from https://www.theses.fr/1990REN10039
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

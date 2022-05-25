@@ -1,5 +1,5 @@
 #'@title Langmuir Isotherm Nonlinear Analysis
-#'@name temkinanalysis
+#'@name langmuiranalysis
 #'@description The Langmuir isotherm is described to be the most useful and
 #' simplest isotherm for both chemical adsorption and physical adsorption. It
 #' assumes that there is uniform adsorption energy onto the monolayer surface
@@ -20,7 +20,6 @@
 #'@references Langmuir, I. (1918) <doi:10.1021/ja01269a066> The adsorption of gases on plane surfaces of
 #'glass, mics and platinum. Journal of the American Chemical Society, 1361-1403.
 #'@export
-#'
 
 # Building the Langmuir isotherm nonlinear form
 langmuiranalysis <- function(Ce, Qe){
@@ -34,13 +33,14 @@ langmuiranalysis <- function(Ce, Qe){
 
 # Setting of starting values
   N <- nrow(na.omit(data))
-  start1<- list(Qmax = 1, Kl= 1)
+  start1<- data.frame(Qmax = seq(0, 100, length.out = 10),  
+                      Kl= seq(0, 100, length.out = 10))
 
 # Fitting of the Langmuir isotherm via nls2
 
-  fit2 <- nls2::nls2(fit1, start = start1, data=data,
+  suppressWarnings(fit2 <- nls2::nls2(fit1, start = start1, data=data,
                  control = nls.control(maxiter=50, warnOnly = TRUE),
-                 algorithm = "port")
+                 algorithm = "port"))
 
   print("Langmuir Isotherm Nonlinear Analysis")
   print(summary(fit2))
@@ -69,6 +69,9 @@ langmuiranalysis <- function(Ce, Qe){
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+  
 # Graphical representation of the Langmuir isotherm model
 
   ### Predicted parameter values
@@ -85,7 +88,7 @@ langmuiranalysis <- function(Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Langmuir Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }
 

@@ -4,12 +4,12 @@
 \alias{fowlerguggenheimanalysis}
 \title{Fowler-Guggenheim Isotherm Non-Linear Analysis}
 \usage{
-fowlerguggenheimanalysis(theta, Ce, Temp)
+fowlerguggenheimanalysis(Ce, theta, Temp)
 }
 \arguments{
-\item{theta}{is the fractional surface coverage}
-
 \item{Ce}{is equal to Co which is the numeric value for the initial concentration}
+
+\item{theta}{is the fractional surface coverage}
 
 \item{Temp}{temperature}
 }
@@ -27,13 +27,13 @@ the adsorbed molecules is taken into consideration. This is formulated on the
 theta <- c(0.19729, 0.34870, 0.61475, 0.74324, 0.88544, 0.89007, 0.91067, 0.91067, 0.96114)
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 Temp <- 298
-fowlerguggenheimanalysis(theta,Ce,Temp)
+fowlerguggenheimanalysis(Ce,theta,Temp)
 }
 \references{
 Fowler, R. H. and Guggenheim, E. A. (1939) Statistical
 Thermodynamics, Cambridge University Press, London, England.
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and; Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

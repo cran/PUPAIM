@@ -18,7 +18,7 @@
 #'  FS4analysis(Ce,Qe)}
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Fritz, W., & Schluender, E. U. (1974) <doi:10.1016/0009-2509(74)80128-4> Simultaneous adsorption
+#' @references Fritz, W., and Schluender, E. U. (1974) <doi:10.1016/0009-2509(74)80128-4> Simultaneous adsorption
 #' equilibria of organic solutes in dilute aqueous solutions on activated carbon.
 #' Chemical Engineering Science, 29(5), 1279-1282.
 #' @export
@@ -91,6 +91,9 @@ FS4analysis <- function(Ce,Qe){
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit3))
+  print(summary(rsqq))
+
 # Graphical representation of the Fritz-Schlunder Four Parameter isotherm model
 
   ### Predicted parameter values
@@ -109,6 +112,6 @@ FS4analysis <- function(Ce,Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Fritz-Schlunder (IV) Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

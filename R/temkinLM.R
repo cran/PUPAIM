@@ -1,4 +1,4 @@
-#' @title Temkin Isotherm Nonlinear Analysis
+#' @title Temkin Isotherm Linear Analysis
 #' @name temkin.LM
 #' @description Temkin isotherm  is a monolayer adsorption isotherm model which
 #' takes into account the effects that the indirect interaction amongst adsorbate
@@ -19,7 +19,7 @@
 #' @author Chester C. Deocaris
 #' @references Temkin, M.J., and Pyzhev, V. (1940). Kinetics of ammonia synthesis
 #' on promoted iron catalyst. Acta Phys. Chim. USSR 12, 327-356.
-#' @references Foo, K. Y., &amp; Hameed, B. H. (2009, September 13). <doi:10.1016/j.cej.2009.09.013>
+#' @references Foo, K. Y., and Hameed, B. H. (2009, September 13). <doi:10.1016/j.cej.2009.09.013>
 #' Insights into the modeling of adsorption isotherm systems. Chemical Engineering Journal.
 #' @export
 #'
@@ -84,12 +84,12 @@ rhs <- function(x,aT,bT) {
 # Graphical representation of the Temkin isotherm linear model
 
 #### Plot details
-  ggplot2::theme_set(theme_bw(10))
-  ggplot2::ggplot(data, aes(x = x, y = y)) + ggplot2::geom_point(color ="#3498DB" ) +
+  ggplot2::theme_set(ggplot2::theme_bw(10))
+  ggplot2::ggplot(data, ggplot2::aes(x = x, y = y)) + ggplot2::geom_point(color ="#3498DB" ) +
     ggplot2::geom_smooth(formula = y ~ x, method = "lm", se = F, color = "#D35400" ) +
     ggplot2::labs(x = "ln(Ce)",
          y = "Qe",
          title = "Temkin Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
-    ggplot2::theme(plot.title=element_text(hjust = 0.5))
+         caption = "PUPAIM") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

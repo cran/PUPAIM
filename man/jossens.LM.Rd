@@ -28,7 +28,7 @@ jossens.LM(Ce, Qe)
 }
 \references{
 Jossens, L., Prausnitz, J. M., Fritz, W., Schlunder, E. U.,
-& Myers, A. L. (1978) <doi:10.1016/0009-2509(78)85015-5> Thermodynamics of
+and Myers, A. L. (1978) <doi:10.1016/0009-2509(78)85015-5> Thermodynamics of
 multi-solute adsorption from dilute aqueous solutions.
 Chemical Engineering Science, 33(8), 1097-1106.
 }

@@ -20,8 +20,8 @@
 #' @examples jovanovic.LM(Ce,Qe)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Jovanović, D.S. (1969) <doi:10.1007/BF01542531> Physical adsorption of gases.
-#' Kolloid-Z.u.Z.Polymere 235, 1214–1225.
+#' @references Jovanovic, D.S. (1969) <doi:10.1007/BF01542531> Physical adsorption of gases.
+#' Kolloid-Z.u.Z.Polymere 235, 1214-1225.
 #' @export
 
 # Building the Jovanovic isotherm linear form
@@ -88,6 +88,6 @@ jovanovic.LM <- function(Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "ln(Qe)",
          title = "Jovanovic Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

@@ -7,9 +7,9 @@
 hillanalysis(Ce, Qe)
 }
 \arguments{
-\item{Ce}{equilibrium capacity}
+\item{Ce}{the numerical value for the equilibrium capacity}
 
-\item{Qe}{adsorbed capacity}
+\item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
 the nonlinear regression, parameters for the Hill isotherm, and model

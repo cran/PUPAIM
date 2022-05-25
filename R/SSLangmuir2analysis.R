@@ -72,19 +72,22 @@ SSLangmuir2analysis <- function(Ce, Qe){
   }
   a <- errors(y)
   print(a)
+  
+  rsqq <- lm(Qe~predict(fit1))
+  print(summary(rsqq))
 
   # Graphical representation of the Langmuir isotherm model
   rhs <- function(x){((pars_Qmax*pars_Kl*x)/(1+(pars_Kl*x)))}
 
   #### Plot details
-  ggplot2::theme_set(theme_bw(10))
-  ggplot2::ggplot(data1, aes(x, y)) + ggplot2::geom_point(color ="#3498DB" ) +
+  ggplot2::theme_set(ggplot2::theme_bw(10))
+  ggplot2::ggplot(data1, ggplot2::aes(x, y)) + ggplot2::geom_point(color ="#3498DB" ) +
     ggplot2::geom_function(color = "#D35400", fun = rhs ) +
     ggplot2::labs(x = "Ce",
        y = "Qe",
        title = "Langmuir Isotherm Nonlinear Model",
        subtitle = "via selfStart based on second linear form",
-       caption = "PUPAIM 0.3.0") +
-    ggplot2::theme(plot.title=element_text(hjust = 0.5),
-        plot.subtitle = element_text(hjust = 0.5))
+       caption = "PUPAIM") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5),
+        plot.subtitle =ggplot2::element_text(hjust = 0.5))
 }

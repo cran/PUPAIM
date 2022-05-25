@@ -19,18 +19,18 @@
 #' @examples theta  <- c(0.1972984, 0.3487013, 0.6147560, 0.7432401, 0.8854408,
 #' 0.8900708, 0.9106746, 0.9106746, 0.9611422)
 #' @examples Temp <- 298.15
-#' @examples hilldeboer.LM(theta, Ce, Temp)
+#' @examples hilldeboer.LM(Ce,theta, Temp)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
 #' @references De Boer, J. H. (1953). The Dynamical Character of adsorption,
 #' Oxford University Press, Oxford, England.
-#' @references Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+#' @references Foo, K. Y., and Hameed, B. H. (2009, September 13).
 #' <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 #' systems. Chemical Engineering Journal.
 #' @export
 
 # Building the Hill-Deboer isotherm linear forms
-hilldeboer.LM <- function(theta, Ce, Temp){
+hilldeboer.LM <- function(Ce,theta, Temp){
 
   x <- theta
   y <- log((Ce*(1-theta))/theta) - (theta/(1-theta))
@@ -96,6 +96,6 @@ hilldeboer.LM <- function(theta, Ce, Temp){
     ggplot2::labs(x = expression(paste(theta)),
          y = expression(paste("log((Ce(1-",theta,"))/", theta,")-(",theta,"/(1-",theta,")")),
          title = "Hill-de Boer Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

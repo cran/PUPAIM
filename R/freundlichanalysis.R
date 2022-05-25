@@ -18,7 +18,7 @@
 #' @author Chester C. Deocaris
 #' @references Freundlich, H. 1907. Ueber die adsorption in loesungen. Z.
 #' Phys. Chem.57:385-470
-#' @references Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+#' @references Foo, K. Y., and Hameed, B. H. (2009, September 13).
 #' <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 #' systems. Chemical Engineering Journal.
 #' @export
@@ -71,6 +71,9 @@ freundlichanalysis <- function(Ce, Qe){
     a <- errors(y)
     print(a)
 
+    rsqq <- lm(Qe~predict(fit2))
+    print(summary(rsqq))
+
 # Graphical representation of the Freundlich isotherm model
 
   ### Predicted parameter values
@@ -87,7 +90,7 @@ freundlichanalysis <- function(Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Freundlich Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust=0.5))
 }
 

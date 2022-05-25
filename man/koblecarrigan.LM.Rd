@@ -28,7 +28,7 @@ Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 
 koblecarrigan.LM(Ce, Qe)
 }
 \references{
-Corrigan, T. E., & Koble, R. A.(1952) <doi:10.1021/ie50506a049>
+Corrigan, T. E., and Koble, R. A.(1952) <doi:10.1021/ie50506a049>
 Adsorption isotherms for pure hydrocarbons Ind. Eng. Chem. 44 383-387.
 }
 \author{

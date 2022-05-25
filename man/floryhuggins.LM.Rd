@@ -4,12 +4,12 @@
 \alias{floryhuggins.LM}
 \title{Flory-Huggins Isotherm Linear Analysis}
 \usage{
-floryhuggins.LM(theta, Ce)
+floryhuggins.LM(Ce, theta)
 }
 \arguments{
-\item{theta}{is theta fractional surface coverage}
-
 \item{Ce}{the numerical value for the equilibrium capacity}
+
+\item{theta}{is theta fractional surface coverage}
 }
 \value{
 the linear regression, parameters for Flory-Huggins isotherm, and
@@ -27,12 +27,12 @@ Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607,
 0.80435, 1.10327, 1.58223)
 theta  <- c(0.1972984, 0.3487013, 0.6147560, 0.7432401, 0.8854408,
 0.8900708, 0.9106746, 0.9106746, 0.9611422)
-floryhuggins.LM (theta,Ce)
+floryhuggins.LM (Ce,theta)
 }
 \references{
 Flory, P. J. (1971). Principles of polymer chemistry. Cornell Univ.Pr.
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

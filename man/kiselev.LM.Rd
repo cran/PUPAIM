@@ -4,12 +4,12 @@
 \alias{kiselev.LM}
 \title{Kiselev Isotherm Linear Analysis}
 \usage{
-kiselev.LM(theta, Ce)
+kiselev.LM(Ce, theta)
 }
 \arguments{
-\item{theta}{is the fractional surface coverage}
-
 \item{Ce}{the numerical value for equilibrium capacity}
+
+\item{theta}{is the fractional surface coverage}
 }
 \value{
 the linear regression, parameters for the Kiselev isotherm, and
@@ -24,7 +24,7 @@ Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607,
 0.80435, 1.10327, 1.58223)
 theta  <- c(0.1972984, 0.3487013, 0.6147560, 0.7432401, 0.8854408,
 0.8900708, 0.9106746, 0.9106746, 0.9611422)
-kiselev.LM(theta, Ce)
+kiselev.LM(Ce,theta)
 }
 \references{
 Kiselev, A. V. (1958). "Vapor adsorption in the formation of

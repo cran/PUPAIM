@@ -25,7 +25,7 @@ Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 
 harkinsjura.LM(Ce, Qe)
 }
 \references{
-Harkins, W. D., & Jura, G. (1944) <doi:10.1021/ja01236a048>
+Harkins, W. D., and Jura, G. (1944) <doi:10.1021/ja01236a048>
 Surfaces of solids. XIII. A vapor adsorption method for the determination of the
 area of a solid withoutthe assumption of a molecular area, and the areas occupied
 by nitrogen and other molecules on the surface of a solid. Journal of the American

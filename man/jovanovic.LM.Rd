@@ -31,8 +31,8 @@ Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 
 jovanovic.LM(Ce,Qe)
 }
 \references{
-Jovanović, D.S. (1969) <doi:10.1007/BF01542531> Physical adsorption of gases.
-Kolloid-Z.u.Z.Polymere 235, 1214–1225.
+Jovanovic, D.S. (1969) <doi:10.1007/BF01542531> Physical adsorption of gases.
+Kolloid-Z.u.Z.Polymere 235, 1214-1225.
 }
 \author{
 Paul Angelo C. Manlapaz

@@ -15,7 +15,7 @@
 #' @examples halsey.LM(Ce, Qe)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Halsey, G., & Taylor, H. S. (1947) <doi:10.1063/1.1746618>
+#' @references Halsey, G., and Taylor, H. S. (1947) <doi:10.1063/1.1746618>
 #' The adsorption of hydrogen on tungsten powders. The Journal of
 #' Chemical Physics, 15(9), 624-630.
 #' @export
@@ -88,6 +88,6 @@ halsey.LM <- function(Ce, Qe){
     ggplot2::labs(x = "ln(Ce)",
          y = "ln(Qe)",
          title = "Halsey Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

@@ -11,12 +11,12 @@
 #' @import ggplot2
 #' @return the nonlinear regression, parameters for Fritz-Schlunder three Parameter
 #' isotherm, and model error analysis
-#' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
-#' @examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+#' @examples Ce <- c(0.9613, 1.0895, 1.5378, 1.9862, 3.3314, 7.8153, 11.4024, 15.8862)
+#' @examples Qe <- c(2.5546, 4.4150, 5.8558, 7.1387, 8.8092, 13.1921, 15.7966, 18.4483)
 #' @examples FS3analysis(Ce,Qe)
 #' @author Jemimah Christine L. Mesias
 #' @author Chester C. Deocaris
-#' @references Fritz, W., & Schluender, E. U. (1974) <doi:10.1016/0009-2509(74)80128-4> Simultaneous adsorption
+#' @references Fritz, W., and Schluender, E. U. (1974) <doi:z10.1016/0009-2509(74)80128-4> Simultaneous adsorption
 #' equilibria of organic solutes in dilute aqueous solutions on activated carbon.
 #' Chemical Engineering Science, 29(5), 1279-1282.
 #' @export
@@ -67,6 +67,9 @@ FS3analysis <- function(Ce, Qe){
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+
   # Graphical representation of the Fritz-Schlunder Three Parameter isotherm model
 
   ### Predicted parameter values
@@ -84,7 +87,7 @@ FS3analysis <- function(Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Fritz-Schlunder (III) Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust=0.5))
 }
 

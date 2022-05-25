@@ -16,9 +16,9 @@
 #' @examples elovich.LM(Ce,Qe)
 #' @author Jemimah Christine L. Mesias
 #' @author Chester C. Deocaris
-#' @references Zeldowitsch, J. (1934). "über Den Mechanismus der Katalytischen
+#' @references Zeldowitsch, J. (1934). "Uber Den Mechanismus der Katalytischen
 #' Oxidation Von CO a MnO2," URSS, Acta Physiochim, Vol. 1, No. 2, 1934, pp. 364-449.
-#' @references Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+#' @references Foo, K. Y., and Hameed, B. H. (2009, September 13).
 #' <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 #' systems. Chemical Engineering Journal.
 #' @export
@@ -87,6 +87,6 @@ elovich.LM <- function(Ce,Qe){
     ggplot2::labs(x = "Qe",
          y = "ln(Qe/Ce)",
          title = "Elovich Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

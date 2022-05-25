@@ -12,7 +12,7 @@
 #' model error analysis
 #' @examples theta <- c(0.19729, 0.34870, 0.61475, 0.74324, 0.88544, 0.89007, 0.91067, 0.91067, 0.96114)
 #' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
-#' @examples kiselevanalysis(theta, Ce)
+#' @examples kiselevanalysis(Ce, theta)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
 #' @references Kiselev, A. V. (1958). "Vapor adsorption in the formation of
@@ -20,7 +20,7 @@
 #' @export
 
 # Building the Kiselev isotherm nonlinear model
-kiselevanalysis <- function(theta, Ce){
+kiselevanalysis <- function(Ce, theta){
 
   x <- theta
   y <- Ce
@@ -65,6 +65,9 @@ kiselevanalysis <- function(theta, Ce){
     }
     a <- errors(y)
     print(a)
+    
+    rsqq <- lm(theta~predict(fit2))
+    print(summary(rsqq))
 
 # Graphical representation of the Kiselev isotherm model
 
@@ -82,6 +85,6 @@ kiselevanalysis <- function(theta, Ce){
     ggplot2::labs(x = expression(paste(theta)),
          y = "Ce",
          title = "Kiselev Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
-    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
+         caption = "PUPAIM") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5)) + ggplot2::coord_flip()
 }

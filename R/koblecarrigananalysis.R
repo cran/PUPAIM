@@ -70,6 +70,9 @@ koblecarrigananalysis <- function(Ce,Qe){
   }
   a <- errors(y)
   print(a)
+  
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
 
 # Graphical representation of the Koble-Corrigan isotherm model
 
@@ -88,6 +91,6 @@ koblecarrigananalysis <- function(Ce,Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Koble-Corrigan Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

@@ -26,7 +26,7 @@ Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 
 kahnanalysis(Ce, Qe)
 }
 \references{
-Khan, A. R., Al-Waheab, I. R., & Al-Haddad, A. (1996) <doi:10.1080/09593331708616356> A
+Khan, A. R., Al-Waheab, I. R., and Al-Haddad, A. (1996) <doi:10.1080/09593331708616356> A
 generalized equation for adsorption isotherms for multi-component organic
 pollutants in dilute aqueous solution. Environmental Technology (United Kingdom), 17(1), 13-23.
 }

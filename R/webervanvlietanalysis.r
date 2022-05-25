@@ -13,7 +13,7 @@
 #'Isotherm Analysis
 #'@examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 #'@examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
-#'@examples webervanvlietanalysis(Qe,Ce)
+#'@examples webervanvlietanalysis(Ce,Qe)
 #'@author Keith T. Ostan
 #'@author Chester C. Deocaris
 #'@references Van Vliet, B.M., Weber Jr., Hozumi, H.. (1979) <doi:10.1016/0043-1354(80)90107-4> Modeling and
@@ -23,7 +23,7 @@
 #'
 
 # Building the Weber-Van Vliet isotherm nonlinear form
-webervanvlietanalysis<- function(Qe,Ce) {
+webervanvlietanalysis<- function(Ce,Qe) {
 
   x <- Qe
   y <- Ce
@@ -73,6 +73,9 @@ webervanvlietanalysis<- function(Qe,Ce) {
   }
   a <- error(y)
   print(a)
+  
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
 
 # Graphical representation of the Weber-Van Vliet isotherm model
 

@@ -52,7 +52,6 @@ aranovichanalysis <- function(Ce,Qe) {
   print("Bayesian Information Criterion")
   print(BIC(fit2))
 
-
 #Error analysis of the Aranovich Isotherm model
 
   errors <- function(y) {
@@ -72,6 +71,9 @@ aranovichanalysis <- function(Ce,Qe) {
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+  
 # Graphical representation of the Aranovich isotherm model
 
   ### Predicted parameter values
@@ -90,6 +92,6 @@ aranovichanalysis <- function(Ce,Qe) {
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Aranovich Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust=0.5))
 }

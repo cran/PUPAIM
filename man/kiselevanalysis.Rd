@@ -4,12 +4,12 @@
 \alias{kiselevanalysis}
 \title{Kiselev Isotherm Non linear Analysis}
 \usage{
-kiselevanalysis(theta, Ce)
+kiselevanalysis(Ce, theta)
 }
 \arguments{
-\item{theta}{is the fractional surface coverage}
-
 \item{Ce}{the numerical value for equilibrium capacity}
+
+\item{theta}{is the fractional surface coverage}
 }
 \value{
 the nonlinear regression, parameters for the Kiselev isotherm, and
@@ -22,7 +22,7 @@ only valid for surface coverage theta > 0.68.
 \examples{
 theta <- c(0.19729, 0.34870, 0.61475, 0.74324, 0.88544, 0.89007, 0.91067, 0.91067, 0.96114)
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
-kiselevanalysis(theta, Ce)
+kiselevanalysis(Ce, theta)
 }
 \references{
 Kiselev, A. V. (1958). "Vapor adsorption in the formation of

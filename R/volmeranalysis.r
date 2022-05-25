@@ -14,7 +14,7 @@
 #' and model error analysis
 #' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 #' @examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
-#' @examples volmeranalysis(Qe,Ce)
+#' @examples volmeranalysis(Ce,Qe)
 #' @author Keith T. Ostan
 #' @author Chester C. Deocaris
 #' @references Volmer, M. (1925) <doi:10.1515/zpch-1925-11519> Thermodynamische folgerungen aus der
@@ -23,7 +23,7 @@
 #'
 
 # Building the Volmer isotherm nonlinear form
-volmeranalysis <- function(Qe,Ce) {
+volmeranalysis <- function(Ce,Qe) {
 
   x <- Qe
   y <- Ce
@@ -37,7 +37,7 @@ volmeranalysis <- function(Qe,Ce) {
 
   # Fitting of the Volmer isotherm via nls2
 
-  fit2 <- nls2::nls2(fit1, start = start1, data=data,
+  fit2 <- nls2::nls2(fit1, start = start1,
                  control = nls.control(maxiter = 100, warnOnly = TRUE),
                  algorithm = "port")
 
@@ -49,7 +49,6 @@ volmeranalysis <- function(Qe,Ce) {
 
   print("Bayesian Information Criterion")
   print(BIC(fit2))
-
 
   #Error analysis of the Volmer Isotherm model
 
@@ -69,6 +68,9 @@ volmeranalysis <- function(Qe,Ce) {
   }
   a <- errors(y)
   print(a)
+  
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
 
   # Graphical representation of the Volmer isotherm model
 
@@ -86,6 +88,6 @@ volmeranalysis <- function(Qe,Ce) {
     ggplot2::labs(x = "Qe",
          y = "Ce",
          title = "Volmer Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
-    ggplot2::theme(plot.title=ggplot2::element_text(hjust=0.5))
+         caption = "PUPAIM") +
+    ggplot2::theme(plot.title=ggplot2::element_text(hjust=0.5)) + ggplot2::coord_flip()
 }

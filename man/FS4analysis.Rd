@@ -27,7 +27,7 @@ coefficients in the isotherm.
  FS4analysis(Ce,Qe)}
 }
 \references{
-Fritz, W., & Schluender, E. U. (1974) <doi:10.1016/0009-2509(74)80128-4> Simultaneous adsorption
+Fritz, W., and Schluender, E. U. (1974) <doi:10.1016/0009-2509(74)80128-4> Simultaneous adsorption
 equilibria of organic solutes in dilute aqueous solutions on activated carbon.
 Chemical Engineering Science, 29(5), 1279-1282.
 }

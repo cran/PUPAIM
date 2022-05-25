@@ -15,13 +15,12 @@
 #' @examples harkinsjuraanalysis(Ce, Qe)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Harkins, W. D., & Jura, G. (1944) <doi:10.1021/ja01236a048> Surfaces of solids. XIII.
+#' @references Harkins, W. D., and Jura, G. (1944) <doi:10.1021/ja01236a048> Surfaces of solids. XIII.
 #' A vapor adsorption method for the determination of the area of a solid without
 #' the assumption of a molecular area, and the areas occupied by nitrogen and other
 #' molecules on the surface of a solid. Journal of the American Chemical Society,
 #' 66(8), 1366-1373.
 #' @export
-#'
 
 # Building the Harkins-Jura isotherm nonlinear form
 harkinsjuraanalysis <- function(Ce, Qe){
@@ -68,6 +67,9 @@ harkinsjuraanalysis <- function(Ce, Qe){
   a <- errors (y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+
 # Graphical representation of the Harkins-Jura isotherm model
 
  ### Predicted parameter values
@@ -84,6 +86,6 @@ harkinsjuraanalysis <- function(Ce, Qe){
    ggplot2::labs(x = "Ce",
         y = "Qe",
         title = "Harkins-Jura Isotherm Nonlinear Model",
-        caption = "PUPAIM 0.3.0") +
+        caption = "PUPAIM") +
    ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

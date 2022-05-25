@@ -12,20 +12,20 @@
 #' @import ggplot2
 #' @return the nonlinear regression, parameters for the Jossens isotherm,
 #' and model error analysis
-#' @examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
 #' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
-#' @examples jossensanalysis(Qe, Ce)
+#' @examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+#' @examples jossensanalysis(Ce, Qe)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Jossens, L., Prausnitz, J. M., Fritz, W., Schl?nder, E. U.,
-#' & Myers, A. L. (1978) <doi:10.1016/0009-2509(78)85015-5> Thermodynamics of
+#' @references Jossens, L., Prausnitz, J. M., Fritz, W., Schlunder, E. U.,
+#' and Myers, A. L. (1978) <doi:10.1016/0009-2509(78)85015-5> Thermodynamics of
 #' multi-solute adsorption from dilute aqueous solutions.
 #' Chemical Engineering Science, 33(8), 1097-1106.
 #' @export
 #'
 
 # Building the Jossens isotherm nonlinear model
-jossensanalysis <- function(Qe, Ce){
+jossensanalysis <- function(Ce, Qe){
 
  x <- Qe
  y <- Ce
@@ -71,6 +71,9 @@ errors <- function(y) {
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+
 # Graphical representation of the Jossens isotherm model
 
   ### Predicted parameter values
@@ -88,6 +91,6 @@ errors <- function(y) {
     ggplot2::labs(x = "Qe",
          y = "Ce",
          title = "Jossens Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5)) + ggplot2::coord_flip()
 }

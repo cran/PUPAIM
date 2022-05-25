@@ -2,7 +2,7 @@
 % Please edit documentation in R/temkinLM.R
 \name{temkin.LM}
 \alias{temkin.LM}
-\title{Temkin Isotherm Nonlinear Analysis}
+\title{Temkin Isotherm Linear Analysis}
 \usage{
 temkin.LM(Ce, Qe, Temp)
 }
@@ -32,7 +32,7 @@ temkin.LM(Ce,Qe,Temp)
 Temkin, M.J., and Pyzhev, V. (1940). Kinetics of ammonia synthesis
 on promoted iron catalyst. Acta Phys. Chim. USSR 12, 327-356.
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13). <doi:10.1016/j.cej.2009.09.013>
+Foo, K. Y., and Hameed, B. H. (2009, September 13). <doi:10.1016/j.cej.2009.09.013>
 Insights into the modeling of adsorption isotherm systems. Chemical Engineering Journal.
 }
 \author{

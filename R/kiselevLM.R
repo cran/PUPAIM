@@ -13,7 +13,7 @@
 #' 0.80435, 1.10327, 1.58223)
 #' @examples theta  <- c(0.1972984, 0.3487013, 0.6147560, 0.7432401, 0.8854408,
 #' 0.8900708, 0.9106746, 0.9106746, 0.9611422)
-#' @examples kiselev.LM(theta, Ce)
+#' @examples kiselev.LM(Ce,theta)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
 #' @references Kiselev, A. V. (1958). "Vapor adsorption in the formation of
@@ -21,7 +21,7 @@
 #' @export
 
 # Building the Kiselev isotherm linear form
-kiselev.LM <- function(theta,Ce){
+kiselev.LM <- function(Ce,theta){
 
   x <- 1/theta
   y <- 1/(Ce*(1-theta))
@@ -84,8 +84,7 @@ kiselev.LM <- function(theta,Ce){
     ggplot2::labs(x = expression(paste("1/", theta)),
          y = expression(paste("1/Ce(1-", theta,")")),
          title = "Kiselev Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }
-
 

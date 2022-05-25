@@ -26,7 +26,7 @@ Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 
 halsey.LM(Ce, Qe)
 }
 \references{
-Halsey, G., & Taylor, H. S. (1947) <doi:10.1063/1.1746618>
+Halsey, G., and Taylor, H. S. (1947) <doi:10.1063/1.1746618>
 The adsorption of hydrogen on tungsten powders. The Journal of
 Chemical Physics, 15(9), 624-630.
 }

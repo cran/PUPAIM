@@ -23,6 +23,7 @@ library(PUPAIM)
 This is the introduction to the package '"PUPAIM". This package is a collection of physical and chemical adsorption isotherm models. This package caters both the linear and nonlinear functions of the adsorption isotherm models, and can give information about the parameters of the isotherm used as well as the linear regression and the error analysis of that isotherm. Using this package, fitting of adsorption data to different adsorption isotherm models can be made easily.
 
 ## Adsorption Plot
+
 ```{r Adsorption Plot, warning=FALSE}
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
@@ -45,7 +46,7 @@ Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 
 Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
 data <- data.frame(Ce,Qe)
 
-henry.LM(Ce, Qe)
+henryanalysis(Ce, Qe)
 ```
 
 ## Example: Two-Parameter Adsorption Isotherm Model
@@ -80,10 +81,6 @@ data <- data.frame(Ce,Qe)
 FS4analysis(Ce, Qe)
 ```
 
-
-
 ## Published Journals
-The PUPAIM R package is a very effective tool to fitting a certain adsorption isotherm model. As what demonstrated by the published journal of Mr. Lloyd de Osio, an undergraduate Chemistry student, and Mr. Chester C. Deocaris, the maintainer of PUPAIM package, with the title:
-> "FITTING HENRY'S ADSORPTION ISOTHERM MODEL IN R USING THE PUPAIM PACKAGE"
-([via](https://www.researchgate.net/publication/342039215_Fitting_Henry's_Adsorption_Isotherm_model_in_R_using_PUPAIM_package))
 
+The PUPAIM R package is a very effective tool to fitting a certain adsorption isotherm model. As what demonstrated by the published journal of Mr. Lloyd de Osio, an undergraduate Chemistry student, and Mr. Chester C. Deocaris, the maintainer of PUPAIM package, with the title: \> "FITTING HENRY'S ADSORPTION ISOTHERM MODEL IN R USING THE PUPAIM PACKAGE" ([via](https://www.researchgate.net/publication/342039215_Fitting_Henry's_Adsorption_Isotherm_model_in_R_using_PUPAIM_package))

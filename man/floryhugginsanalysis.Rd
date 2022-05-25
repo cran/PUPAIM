@@ -4,12 +4,12 @@
 \alias{floryhugginsanalysis}
 \title{Flory-Huggins Isotherm Non-Linear Analysis}
 \usage{
-floryhugginsanalysis(theta, Ce)
+floryhugginsanalysis(Ce, theta)
 }
 \arguments{
-\item{theta}{is the fractional surface coverage}
-
 \item{Ce}{is equal to Co which is the numeric value for the initial concentration}
+
+\item{theta}{is the fractional surface coverage}
 }
 \value{
 the nonlinear regression, parameters for Flory-Huggins isotherm, and model
@@ -25,12 +25,12 @@ thermodynamics.
 \examples{
 theta <- c(0.19729, 0.34870, 0.61475, 0.74324, 0.88544, 0.89007, 0.91067, 0.91067, 0.96114)
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
-floryhugginsanalysis(theta, Ce)
+floryhugginsanalysis(Ce, theta)
 }
 \references{
 Flory, P. J. (1971). Principles of polymer chemistry. Cornell Univ.Pr.
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

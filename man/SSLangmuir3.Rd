@@ -2,7 +2,7 @@
 % Please edit documentation in R/SSLangmuir3.R
 \name{SSLangmuir3}
 \alias{SSLangmuir3}
-\title{selfStart using Langmuir Second Linear Model}
+\title{selfStart using Langmuir Third Linear Model}
 \usage{
 SSLangmuir3(Ce, Qmax,Kl)
 }

@@ -29,7 +29,7 @@ freundlichanalysis(Ce,Qe)
 Freundlich, H. 1907. Ueber die adsorption in loesungen. Z.
 Phys. Chem.57:385-470
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

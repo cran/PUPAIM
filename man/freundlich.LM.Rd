@@ -23,13 +23,13 @@ defines the surface heterogeneity and the exponential distribution of active sit
 \examples{
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
-freundlich.LM (Ce,Qe)
+freundlich.LM(Ce,Qe)
 }
 \references{
 Freundlich, H. 1907. Ueber die adsorption in loesungen. Z.
 Phys. Chem.57:385-470
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

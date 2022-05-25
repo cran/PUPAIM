@@ -2,7 +2,7 @@
 #' @name halseyanalysis
 #' @description A multilayer adsorption isotherm model which is suited for
 #' adsorption of adsorbate ions at a distance that is relatively large from the
-#'  surface.
+#' surface.
 #' @param Ce the numerical value for the equilibrium capacity
 #' @param Qe the numerical value for the adsorbed capacity
 #' @import nls2
@@ -16,7 +16,7 @@
 #' @examples halseyanalysis(Ce, Qe)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Halsey, G., & Taylor, H. S. (1947) <doi:10.1063/1.1746618> The adsorption of
+#' @references Halsey, G., and Taylor, H. S. (1947) <doi:10.1063/1.1746618> The adsorption of
 #' hydrogen on tungsten powders. The Journal of Chemical Physics, 15(9), 624-630.
 #' @export
 
@@ -67,6 +67,9 @@ halseyanalysis <- function(Ce,Qe) {
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+
 # Graphical representation of the Halsey isotherm model
 
   ### Predicted parameter values
@@ -83,6 +86,6 @@ halseyanalysis <- function(Ce,Qe) {
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Halsey Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

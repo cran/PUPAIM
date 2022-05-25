@@ -109,6 +109,6 @@ hill.LM<- function(Ce, Qe){
     ggplot2::labs(x = "log(Ce)",
          y = "log(Qe/(Qsh-Qe))",
          title = "Hill Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

@@ -16,17 +16,17 @@
 #' 0.80435, 1.10327, 1.58223)
 #' @examples theta  <- c(0.1972984, 0.3487013, 0.6147560, 0.7432401, 0.8854408,
 #' 0.8900708, 0.9106746, 0.9106746, 0.9611422)
-#' @examples floryhuggins.LM (theta,Ce)
+#' @examples floryhuggins.LM (Ce,theta)
 #' @author Jemimah Christine L. Mesias
 #' @author Chester C. Deocaris
 #' @references Flory, P. J. (1971). Principles of polymer chemistry. Cornell Univ.Pr.
-#' @references Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+#' @references Foo, K. Y., and Hameed, B. H. (2009, September 13).
 #' <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 #' systems. Chemical Engineering Journal.
 #' @export
 
 # Building the Flory-Huggins isotherm linear form
-floryhuggins.LM <- function(theta,Ce){
+floryhuggins.LM <- function(Ce,theta){
 
   x <- 1 - theta
   y <- log10(theta/Ce)
@@ -92,6 +92,6 @@ rhs <- function(x, KFH, nFH) {
     ggplot2::labs(x = expression(paste("1-", theta)),
          y = expression(paste("log(", theta,"/Ce)")),
          title = "Flory-Huggins Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

@@ -5,8 +5,8 @@
 #' that adsorption is a cooperative phenomenon which means the adsorbates having
 #' the capability to bind at one specific site on the adsorbent affecting other
 #' binding sites on the same adsorbent
-#' @param Ce equilibrium capacity
-#' @param Qe adsorbed capacity
+#' @param Ce the numerical value for the equilibrium capacity
+#' @param Qe the numerical value for the adsorbed capacity
 #' @import nls2
 #' @import Metrics
 #' @import stats
@@ -24,7 +24,7 @@
 #' @export
 
 # Building the Hill isotherm nonlinear form
-hillanalysis <- function(Ce, Qe){
+hillanalysis <- function(Ce,Qe){
 
   x <- Ce
   y <- Qe
@@ -69,8 +69,10 @@ hillanalysis <- function(Ce, Qe){
   }
   a <- errors(y)
   print(a)
-
-
+  
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+  
 # Graphical representation of the Hill isotherm model
 
   ### Predicted parameter values
@@ -88,6 +90,6 @@ hillanalysis <- function(Ce, Qe){
     ggplot2::labs(x = "Ce",
        y = "Qe",
        title = "Hill Isotherm Nonlinear Model",
-       caption = "PUPAIM 0.3.0") +
+       caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

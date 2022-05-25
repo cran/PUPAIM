@@ -14,7 +14,7 @@
 #' @examples harkinsjura.LM(Ce, Qe)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Harkins, W. D., & Jura, G. (1944) <doi:10.1021/ja01236a048>
+#' @references Harkins, W. D., and Jura, G. (1944) <doi:10.1021/ja01236a048>
 #' Surfaces of solids. XIII. A vapor adsorption method for the determination of the
 #' area of a solid withoutthe assumption of a molecular area, and the areas occupied
 #' by nitrogen and other molecules on the surface of a solid. Journal of the American
@@ -87,7 +87,7 @@ errors <- function(y) {
     ggplot2::labs(x = "log(Ce)",
          y = expression(paste("1/Qe"^"2")),
          title = "Harkins-Jura Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }
 

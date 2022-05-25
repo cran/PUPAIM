@@ -22,7 +22,7 @@
 #' @references Dubinin, M.M. and Radushkevich, L.V. (1947) The Equation of the
 #' Characteristic Curve of Activated Charcoal.
 #' Proceedings of the Academy of Sciences, Physical Chemistry Section, 55, 331.
-#' @references Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+#' @references Foo, K. Y., and Hameed, B. H. (2009, September 13).
 #' <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 #' systems. Chemical Engineering Journal.
 #' @export
@@ -97,6 +97,6 @@ dubininradushkevich.LM <- function(Ce, Qe, Temp){
     ggplot2::labs(x = expression(paste(epsilon^"2")),
          y = "ln(Qe)",
          title = "Dubinin-Radushkevich Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

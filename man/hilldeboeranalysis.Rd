@@ -4,12 +4,12 @@
 \alias{hilldeboeranalysis}
 \title{Hill-Deboer Isotherm Non-Linear Analysis}
 \usage{
-hilldeboeranalysis(theta, Ce, Temp)
+hilldeboeranalysis(Ce, theta, Temp)
 }
 \arguments{
-\item{theta}{is the fractional surface coverage}
-
 \item{Ce}{the numerical value for the equilibrium capacity}
+
+\item{theta}{is the fractional surface coverage}
 
 \item{Temp}{the temperature of the adsorption experimentation in Kelvin}
 }
@@ -29,13 +29,13 @@ among the adsorbed molecules.
 theta <- c(0.19729, 0.34870, 0.61475, 0.74324, 0.88544, 0.89007, 0.91067, 0.91067, 0.96114)
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 Temp <- 298
-hilldeboeranalysis(theta, Ce, Temp)
+hilldeboeranalysis(Ce,theta, Temp)
 }
 \references{
 De Boer, J. H. (1953). The Dynamical Character of adsorption,
 Oxford University Press, Oxford, England.
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

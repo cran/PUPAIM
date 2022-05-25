@@ -4,12 +4,12 @@
 \alias{jossensanalysis}
 \title{Jossens Isotherm Non-Linear Analysis}
 \usage{
-jossensanalysis(Qe, Ce)
+jossensanalysis(Ce, Qe)
 }
 \arguments{
-\item{Qe}{the numerical value for the adsorbed capacity}
-
 \item{Ce}{the numerical value for the equilibrium capacity}
+
+\item{Qe}{the numerical value for the adsorbed capacity}
 }
 \value{
 the nonlinear regression, parameters for the Jossens isotherm,
@@ -22,13 +22,13 @@ This model assumes that the adsorbent has heterogeneous surface with respect
 to the interactions it has with the adsorbate.
 }
 \examples{
-Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
-jossensanalysis(Qe, Ce)
+Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
+jossensanalysis(Ce, Qe)
 }
 \references{
-Jossens, L., Prausnitz, J. M., Fritz, W., Schl?nder, E. U.,
-& Myers, A. L. (1978) <doi:10.1016/0009-2509(78)85015-5> Thermodynamics of
+Jossens, L., Prausnitz, J. M., Fritz, W., Schlunder, E. U.,
+and Myers, A. L. (1978) <doi:10.1016/0009-2509(78)85015-5> Thermodynamics of
 multi-solute adsorption from dilute aqueous solutions.
 Chemical Engineering Science, 33(8), 1097-1106.
 }

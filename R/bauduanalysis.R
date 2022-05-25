@@ -20,7 +20,7 @@
 #' @references Baudu, M. (1990). Etude des interactions solutes-fibres de charbon actif:
 #' applications et regeneration (Doctoral dissertation, Rennes 1).
 #' from https://www.theses.fr/1990REN10039
-#' @references Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+#' @references Foo, K. Y., and Hameed, B. H. (2009, September 13).
 #' <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 #' systems. Chemical Engineering Journal.
 #' @export
@@ -54,7 +54,6 @@ bauduanalysis <- function(Ce,Qe){
   print("Bayesian Information Criterion")
   print(BIC(fit2))
 
-
 # Error analysis of the Baudu isotherm model
 
   errors <- function(y) {
@@ -74,6 +73,9 @@ bauduanalysis <- function(Ce,Qe){
   a <- errors(y)
   print(a)
 
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
+
 # Graphical representation of the Baudu isotherm model
 
   ### Predicted parameter values
@@ -92,6 +94,6 @@ bauduanalysis <- function(Ce,Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Baudu Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

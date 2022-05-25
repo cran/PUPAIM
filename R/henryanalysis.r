@@ -1,5 +1,5 @@
 #' @title Henry Isotherm Linear Analysis
-#' @name henry.LM
+#' @name henryanalysis
 #' @description It describes the appropriate fit to the adsorption of adsorbate
 #' at relatively low concentrations such that all adsorbate molecules are
 #' secluded from their nearest neighbours.
@@ -12,15 +12,15 @@
 #' @import ggplot2
 #' @examples Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
 #' @examples Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
-#' @examples henry.LM(Ce, Qe)
+#' @examples henryanalysis(Ce, Qe)
 #' @author Paul Angelo C. Manlapaz
 #' @author Chester C. Deocaris
-#' @references Deocaris, C., & Osio, L. (2020). Fitting Henry’s
+#' @references Deocaris, C., and Osio, L. (2020). Fitting Henry's
 #' Adsorption Isotherm model in R using PUPAIM package.
 #' @export
 
 # Building the Henry isotherm linear model
-henry.LM <- function (Ce, Qe){
+henryanalysis <- function (Ce, Qe){
 
   x <- Ce
   y <- Qe
@@ -78,6 +78,6 @@ henry.LM <- function (Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Henry Isotherm Linear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

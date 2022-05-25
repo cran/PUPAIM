@@ -4,12 +4,12 @@
 \alias{elovichanalysis}
 \title{Elovich Isotherm  Non-Linear Analysis}
 \usage{
-elovichanalysis(Qe, Ce)
+elovichanalysis(Ce, Qe)
 }
 \arguments{
-\item{Qe}{the numerical value for adsorbed capacity}
-
 \item{Ce}{the numerical value for equilibrium concentration}
+
+\item{Qe}{the numerical value for adsorbed capacity}
 }
 \value{
 the nonlinear regression, parameters for Elovich isotherm, and
@@ -24,13 +24,13 @@ reactions responsible for adsorption. It is suited for describing the behavior
 \examples{
 Qe <- c(0.03409, 0.06025, 0.10622, 0.12842, 0.15299, 0.15379, 0.15735, 0.15735, 0.16607)
 Ce <- c(0.01353, 0.04648, 0.13239, 0.27714, 0.41600, 0.63607, 0.80435, 1.10327, 1.58223)
-elovichanalysis(Qe,Ce)
+elovichanalysis(Ce,Qe)
 }
 \references{
-Zeldowitsch, J. (1934). "?ber Den Mechanismus der Katalytischen
+Zeldowitsch, J. (1934). "Uber Den Mechanismus der Katalytischen
 Oxidation Von CO a MnO2," URSS, Acta Physiochim, Vol. 1, No. 2, 1934, pp. 364-449.
 
-Foo, K. Y., &amp; Hameed, B. H. (2009, September 13).
+Foo, K. Y., and Hameed, B. H. (2009, September 13).
 <doi:10.1016/j.cej.2009.09.013> Insights into the modeling of adsorption isotherm
 systems. Chemical Engineering Journal.
 }

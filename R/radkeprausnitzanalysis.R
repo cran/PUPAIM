@@ -13,7 +13,9 @@
 #' @examples radkeprausnitzanalysis(Ce,Qe)
 #' @author Keith T. Ostan
 #' @author Chester C. Deocaris
-#' @references Radke, C. J. and Prausnitz, J. M. (1972) <doi:10.1021/i160044a003> Adsorption of organic solutions from dilute aqueous solution on activated carbon, Ind. Eng. Chem. Fund. 11 (1972) 445-451.
+#' @references Radke, C. J. and Prausnitz, J. M. (1972) <doi:10.1021/i160044a003> 
+#' Adsorption of organic solutions from dilute aqueous solution on activated carbon, 
+#' Ind. Eng. Chem. Fund. 11 (1972) 445-451.
 #' @export
 #'
 
@@ -67,6 +69,9 @@ radkeprausnitzanalysis <- function(Ce, Qe){
   }
   a <- errors(y)
   print(a)
+  
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
 
 # Graphical representation of the Radke-Praustnitz isotherm model
 
@@ -85,6 +90,6 @@ radkeprausnitzanalysis <- function(Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Radke-Praustnitz Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }

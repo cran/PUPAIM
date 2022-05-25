@@ -1,5 +1,5 @@
 #'@title Toth Isotherm  Nonlinear Analysis
-#'@name temkinanalysis
+#'@name tothanalysis
 #'@description Another empirical modification of the Langmuir equation with the
 #'aim of reducing the error between experimental data and predicted value of
 #'equilibrium data.
@@ -19,7 +19,7 @@
 #'@references Toth, J. (1971). State equations of the solid gas interface layer.
 #'Acta Chem. Acad. Hung. 69:311-317
 #'@export
-#'
+
 
 # Building the Toth isotherm nonlinear form
 tothanalysis <- function(Ce, Qe){
@@ -51,7 +51,6 @@ tothanalysis <- function(Ce, Qe){
   print("Bayesian Information Criterion")
   print(BIC(fit2))
 
-
 # Error analysis of the Sips isotherm model
 
   errors <- function (y) {
@@ -70,6 +69,9 @@ tothanalysis <- function(Ce, Qe){
   }
   a <- errors(y)
   print(a)
+  
+  rsqq <- lm(Qe~predict(fit2))
+  print(summary(rsqq))
 
 # Graphical representation of the Toth isotherm model
 
@@ -88,6 +90,6 @@ tothanalysis <- function(Ce, Qe){
     ggplot2::labs(x = "Ce",
          y = "Qe",
          title = "Toth Isotherm Nonlinear Model",
-         caption = "PUPAIM 0.3.0") +
+         caption = "PUPAIM") +
     ggplot2::theme(plot.title=ggplot2::element_text(hjust = 0.5))
 }
